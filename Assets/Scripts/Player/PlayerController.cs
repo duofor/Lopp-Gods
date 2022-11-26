@@ -16,13 +16,6 @@ public class PlayerController : Looper {
     int currentFloor = 1;
     bool shouldMove = true;
     
-    void Start() {
-
-    }
-    void Update() {
-        // loop();
-    }
-
     public void init() {
         allMovePoints = GameObject.FindGameObjectsWithTag("MovePoint");
         rb = GetComponent<Rigidbody2D>();
@@ -89,9 +82,15 @@ public class PlayerController : Looper {
         if ( collision.transform.tag != "Monster" ) {
             return;
         }
-        Debug.Log( transform.gameObject.name + "  DESTROYED:  " + collision.transform.name );
+        // Debug.Log( transform.gameObject.name + "  DESTROYED:  " + collision.transform.name );
+        
+        //begin battle....
+        //battle logic here <<<<----
+
+        //drop
+
+        //begone
         Destroy(collision.gameObject);
     
     }
-
 }

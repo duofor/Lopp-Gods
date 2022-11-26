@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
 using UnityEngine;
 
 public class Monster : MonoBehaviour {
@@ -7,14 +8,22 @@ public class Monster : MonoBehaviour {
     int health,damage,level,defense = 0;
     BoxCollider2D boxCollider;
 
+    [SerializeField] private GameObject droppedItem;
 
-    void Start() {
+    public delegate void MonsterDeath();
+    public static event MonsterDeath deathEvent;
+
+    void Awake() {
         boxCollider = GetComponent<BoxCollider2D>();
-        Debug.Log("BLllaarrhhhh spawned: " + transform.gameObject.name);
+        // Debug.Log("BLllaarrhhhh spawned: " + transform.gameObject.name);
     }
 
     void Update() {
-        
+
+    }
+
+    void OnDestroy() {
+        deathEvent();
     }
 
     public GameObject spawnAtLocation(Vector3 location) {
@@ -33,5 +42,20 @@ public class Monster : MonoBehaviour {
         damage = 1;
         level = 1;
         defense = 1;
+    }
+
+    public GameObject dropItem() {
+        //add a chance for this drop maybe
+        GameObject drop = Instantiate(droppedItem, transform.position, transform.rotation);
+        
+        // Destroy(this.transform.gameObject);
+    
+        return drop;
+    }
+
+    void startEncounter() {
+        //play some animation ....
+
+        // show fighting ground.
     }
 }
