@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class GameController : MonoBehaviour {
+public class GameController : GameStateManager {
     // Start is called before the first frame update
     // [SerializeField] public MapGenerator mapGenerator;
+    public static GameController instance;
 
     public PlayerController player;
     public MapGenerator mapGenerator;
@@ -19,6 +20,7 @@ public class GameController : MonoBehaviour {
     private Util util = new Util();
 
     void Awake() {
+        instance = this;
         Monster.deathEvent += rewardPlayerWithCard; 
     }
 
@@ -38,31 +40,33 @@ public class GameController : MonoBehaviour {
     }
 
     void Update() {
-
-        if( util.getAllObjectsWithTag("Monster").Length != 0 ) {
-            //we have monsters in the game so we continue looping
-            player.loop();
-        } else {
+        if( util.getAllObjectsWithTag("Monster").Length == 0 ) {
             //spawn one monster
             GameObject randomTile = mapGenerator.getRandomTile();
             monster.spawnAtLocation(randomTile.transform.position);
-        }
+        } 
+
+
+
     }
 
     void rewardPlayerWithCard() { // maybe this should not be an event.
         //add a card to deck
         if (testCard && deck) {
-            if ( cardPosition.cards.Count > 15 ) { //its max bro
-                // make the card go poof
+            if ( deck.getDeck().Count > 15 ) { //its max bro
                 return;
             } 
-
+            // if card does not have Trigger checked on BoxCollider. it will collide with fcking player
             Card cardGameObject = Instantiate(testCard, deck.transform.position, deck.transform.rotation);
-            cardPosition.cards.Add(cardGameObject.gameObject);
-
-            // deck.addCardToDeck(cardGameObject);
+            deck.addCardToDeck(cardGameObject);
         }
 
-        Debug.Log("I should receive a CARD for killing you");
+        // Debug.Log("I should receive a CARD for killing you");
     }
+
+    public void battle() {
+        // Debug.Log("Starting the battle");
+        rewardPlayerWithCard();
+    }
+
 }

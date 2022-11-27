@@ -37,4 +37,8 @@ public class Util {
 
         return otherObjects;
     }
+
+    public Vector3 getMouseWorldPosition() {
+        return Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    }
 }

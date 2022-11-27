@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Deck : MonoBehaviour {
     
+    public delegate void DeckUpdate(List<Card> e);
+    public static event DeckUpdate deckWasUpdated;
+
     private SpriteRenderer spriteRenderer;
     public List<Card> deckCards;
 
@@ -14,8 +17,9 @@ public class Deck : MonoBehaviour {
     void Update() {
     }
 
-    public void addCardToDeck(Card card) {
+    public void addCardToDeck(Card card) {//this also notifies the GUI
         this.deckCards.Add(card);
+        deckWasUpdated(deckCards);
     }
 
     public List<Card> getDeck() {

@@ -6,6 +6,7 @@ public class GUIController : MonoBehaviour {
     
     public Camera guiCamera;
     private Canvas canvasObject; // Assign in inspector
+    private Canvas battleCanvas;
 
     void Start() {
         //camera init. temporarely using from inspector
@@ -15,6 +16,9 @@ public class GUIController : MonoBehaviour {
         //canvas init
         GameObject objectWithTheCamera = transform.Find("Canvas").gameObject;
         canvasObject = objectWithTheCamera.GetComponent<Canvas>();
+
+        GameObject battle = transform.Find("BattleCanvas").gameObject;
+        battleCanvas = battle.GetComponent<Canvas>();
     }
 
     void Update() {

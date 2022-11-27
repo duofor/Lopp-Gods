@@ -10,9 +10,11 @@ public class PlayerController : Looper {
     Vector3 targetPosition;
 
     Rigidbody2D rb;    
+
+    public bool isInBattle = false;
     
-    // [SerializeField] float movementSpeed = 0.0015f;
-    [SerializeField] float movementSpeed = 0.006f;
+    float movementSpeed = 0.05f;
+    // [SerializeField] float movementSpeed = 0.006f;
     int currentFloor = 1;
     bool shouldMove = true;
     
@@ -20,16 +22,15 @@ public class PlayerController : Looper {
         allMovePoints = GameObject.FindGameObjectsWithTag("MovePoint");
         rb = GetComponent<Rigidbody2D>();
         //init floors
-        int index = 0;        
         foreach (GameObject gameObject in allMovePoints) {
             GameObject parent = gameObject.transform.parent.gameObject;
             // Debug.Log(parent.name);
             floors.Add(parent);
-            index += 1; 
         }
     }
 
     public void loop() {
+
         if ( shouldMove ) {
             targetPosition = getNextFloorPosition();
         }
@@ -82,15 +83,13 @@ public class PlayerController : Looper {
         if ( collision.transform.tag != "Monster" ) {
             return;
         }
-        // Debug.Log( transform.gameObject.name + "  DESTROYED:  " + collision.transform.name );
-        
         //begin battle....
-        //battle logic here <<<<----
+        isInBattle = true;
 
-        //drop
+        // Destroy(collision.gameObject);
+    }
 
-        //begone
-        Destroy(collision.gameObject);
-    
+    void finishBattle() {
+        isInBattle = true;
     }
 }
