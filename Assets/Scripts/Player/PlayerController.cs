@@ -13,7 +13,7 @@ public class PlayerController : Looper {
 
     public bool isInBattle = false;
     
-    float movementSpeed = 0.05f;
+    float movementSpeed = 0.04f;
     // [SerializeField] float movementSpeed = 0.006f;
     int currentFloor = 1;
     bool shouldMove = true;

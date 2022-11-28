@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour {
     //basic attributes
-    int health,damage,level,defense = 0;
     BoxCollider2D boxCollider;
 
     [SerializeField] private GameObject droppedItem;
@@ -38,10 +37,7 @@ public class Monster : MonoBehaviour {
         //transform.parent = util.findTargetByTagAndName("GameHandler", "GameHandler").transform;
         
         //basic init stuff. tbd later
-        health = 5;
-        damage = 1;
-        level = 1;
-        defense = 1;
+
     }
 
     public GameObject dropItem() {

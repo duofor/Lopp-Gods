@@ -26,12 +26,12 @@ public class EnemyUI : MonoBehaviour {
 
     void OnMouseOver() {
         //highlight the fucker
-        spriteRenderer.color = Color.red;
+        // spriteRenderer.color = Color.red;
     }
 
     void OnMouseExit() {
         //stop highlughting the fucker
-        spriteRenderer.color = initialColor;
+        // spriteRenderer.color = initialColor;
     }
 
 }

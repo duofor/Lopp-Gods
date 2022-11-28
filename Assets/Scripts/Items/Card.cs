@@ -26,6 +26,7 @@ public class Card : MonoBehaviour {
 
         // line draw
         lineRenderer = GetComponent<LineRenderer>();
+        //outline
     }
 
     void OnMouseOver() {
@@ -74,6 +75,13 @@ public class Card : MonoBehaviour {
             RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.zero, 0f);
             if (hit) {
                 //if release do some magic.
+
+                //apply some highlight...
+                ///// Can generate 4 copies of the sprite, set them black, move them up down left right of the base sprite so we create
+                /////an outline effect, then set teh color to wahtever
+
+
+
                 print(hit.transform.gameObject.tag);
             }
 
