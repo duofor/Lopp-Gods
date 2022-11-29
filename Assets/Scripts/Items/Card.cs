@@ -1,17 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Card : MonoBehaviour {
+
+    Util util = new Util();    
+
+    public delegate void CardUsed( Card card, RaycastHit2D hit );
+    public static event CardUsed cardUseEvent;
 
     //main card sprite
     SpriteRenderer spriteRenderer;
     LineRenderer lineRenderer;
+    LineRenderer lineRendererResetter;
+    
     //should have also a miniIcon
     Color initialColor;
 
     int initialLayer;
     bool canTarget = false;
+    bool canUseCard = false;
 
     Vector3 startMousePos;
     Vector3 mousePos;
@@ -26,17 +35,16 @@ public class Card : MonoBehaviour {
 
         // line draw
         lineRenderer = GetComponent<LineRenderer>();
+        lineRendererResetter = lineRenderer;
         //outline
     }
 
     void OnMouseOver() {
-        spriteRenderer.sortingOrder = 10;
-        spriteRenderer.color = Color.cyan;
+        selectCard();
     }
 
     void OnMouseExit() {
-        spriteRenderer.sortingOrder = initialLayer;
-        spriteRenderer.color = initialColor;
+        deselectCard();
     }
 
     void OnMouseDown() {
@@ -45,13 +53,12 @@ public class Card : MonoBehaviour {
 
     void Update() {
         if (canTarget) {
+            canUseCard = false;
             target();
+        } else if (canUseCard) {
+            useCard();
         }
 
-    }
-
-    public void useCard() {
-        Destroy(transform.gameObject);
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
@@ -64,26 +71,39 @@ public class Card : MonoBehaviour {
         }
 
         if (Input.GetMouseButton(0)) {
+            selectCard();
+
             //drawing line
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             lineRenderer.SetPosition( 0, new Vector3(startMousePos.x ,startMousePos.y, 0) );
             lineRenderer.SetPosition( 1, new Vector3(mousePos.x ,mousePos.y, 0) );
 
-        } else if (canTarget && Input.GetMouseButtonUp(0)) {
-            //Line released, getting targeted object.
-            Vector2 origin = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
-            RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.zero, 0f);
-            if (hit) {
-                //if release do some magic.
-
-                //apply some highlight...
-                ///// Can generate 4 copies of the sprite, set them black, move them up down left right of the base sprite so we create
-                /////an outline effect, then set teh color to wahtever
-
-
-
-                print(hit.transform.gameObject.tag);
+            RaycastHit2D hit = getTargetAtMouse();
+            if (hit && hit.collider.name == "Enemy" ) {
+            //apply some highlight...
+            ///// Can generate 4 copies of the sprite, set them black, move them up down left right of the base sprite so we create
+            /////an outline effect, then set teh color to wahtever
+                
             }
+
+        } else if ( Input.GetMouseButtonUp(0) && canTarget ) {
+            deselectCard();
+            
+            RaycastHit2D hit = getTargetAtMouse();
+            if (hit && hit.collider.name == "Enemy" ) {
+                canTarget = false;
+                canUseCard = true;
+
+            // fire some event 
+                cardUseEvent(this, hit);
+            // Event scope 
+            //     --> Send stuff to the target.(dmg, info. etc)
+            //     Update deck cards.
+            //     play card use animation(move a litte to front )
+            //     play card ability animation(attack, def utility... w/e it is play it)
+            }
+        
+
 
         } else {
             canTarget = false;
@@ -93,5 +113,25 @@ public class Card : MonoBehaviour {
 
 
 
+    }
+
+    private RaycastHit2D getTargetAtMouse() {
+        Vector2 origin = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
+        RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.zero, 0f);
+        return hit;
+    }
+
+    void selectCard() {
+        spriteRenderer.color = Color.cyan; //change color
+        spriteRenderer.sortingOrder = 10;
+    }
+
+    void deselectCard() {
+        spriteRenderer.sortingOrder = initialLayer;
+        spriteRenderer.color = initialColor;
+    }
+
+    public void useCard() {
+        Destroy(transform.gameObject);
     }
 }

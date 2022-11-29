@@ -12,8 +12,13 @@ public class Monster : MonoBehaviour {
     public delegate void MonsterDeath();
     public static event MonsterDeath deathEvent;
 
+    Vector3 initialPosition;
+
+
     void Awake() {
+        initialPosition = transform.position;
         boxCollider = GetComponent<BoxCollider2D>();
+        Card.cardUseEvent += attacked;
         // Debug.Log("BLllaarrhhhh spawned: " + transform.gameObject.name);
     }
 
@@ -40,18 +45,31 @@ public class Monster : MonoBehaviour {
 
     }
 
-    public GameObject dropItem() {
-        //add a chance for this drop maybe
-        GameObject drop = Instantiate(droppedItem, transform.position, transform.rotation);
-        
-        // Destroy(this.transform.gameObject);
-    
-        return drop;
+    void attacked(Card card, RaycastHit2D hit) {
+        StartCoroutine( doSomeSmallShake( hit ) );
     }
 
-    void startEncounter() {
-        //play some animation ....
+    IEnumerator doSomeSmallShake( RaycastHit2D hit ) {
+        Debug.Log("yeahh");
+        Vector3 initialHitPosition = hit.transform.position;
 
-        // show fighting ground.
+        float timePassed = 0;
+        bool flip = false;
+        while (timePassed < 0.3f) {
+            // Shake
+            if (flip) {
+                flip = !flip; 
+                hit.transform.position += new Vector3(0, initialPosition.y / 80, 0);
+                hit.transform.position += new Vector3(initialPosition.x / 80, 0, 0);
+            } else {
+                flip = !flip; 
+                hit.transform.position -= new Vector3(0, initialPosition.y / 80, 0);
+                hit.transform.position -= new Vector3(initialPosition.x / 80, 0, 0);
+            }
+            timePassed += Time.deltaTime;
+            yield return null;
+        }
+
+        hit.transform.position = initialHitPosition;
     }
 }

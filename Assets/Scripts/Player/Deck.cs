@@ -8,10 +8,14 @@ public class Deck : MonoBehaviour {
     public static event DeckUpdate deckWasUpdated;
 
     private SpriteRenderer spriteRenderer;
+    
     public List<Card> deckCards;
+    public List<Card> usedDeckCards;
+    
 
     void Awake() {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        Card.cardUseEvent += removeCardFromDeck; 
     }
 
     void Update() {
@@ -24,6 +28,12 @@ public class Deck : MonoBehaviour {
 
     public List<Card> getDeck() {
         return deckCards;
+    }
+
+    void removeCardFromDeck(Card card, RaycastHit2D hit) {
+        deckCards.Remove(card);
+        usedDeckCards.Add(card);
+        //could move the card to a used deck
     }
 }
 
