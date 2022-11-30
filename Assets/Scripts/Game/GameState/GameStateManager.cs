@@ -23,8 +23,6 @@ public class GameStateManager : MonoBehaviour {
     public void switchState(GameBaseState state) {
         this.currentState = state;
         this.currentState.enterState(this);
-
-        Debug.Log("switched state");
     }
 
     public GameBaseState getState() {

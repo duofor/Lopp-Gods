@@ -4,21 +4,35 @@ using UnityEngine;
 
 public class PlayerUI : MonoBehaviour {
 
-    [SerializeField] private GameObject player;
 
+    [SerializeField] private GameObject player;
+    
     SpriteRenderer spriteRenderer;
     BoxCollider2D boxCollider;
 
     void Awake() {
-        spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
-        spriteRenderer.sprite = player.GetComponent<SpriteRenderer>().sprite;
-        transform.localScale = new Vector3(650, 650, 0);
+        if (boxCollider == null ) {
+            boxCollider = gameObject.AddComponent<BoxCollider2D>();
+        }
+
+        if (spriteRenderer == null) {
+            spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
+
+        }
         
-        boxCollider = gameObject.AddComponent<BoxCollider2D>();
+        transform.localScale = new Vector3(650, 650, 0);
+        spriteRenderer.sprite = player.GetComponent<SpriteRenderer>().sprite;
         boxCollider.size = spriteRenderer.size;
+        
+        gameObject.SetActive(true);
     }
 
-    
+    void Update() {
+        if (GameController.instance.player.isInBattle == false) {
+            gameObject.SetActive(false);
+        } else {
+            gameObject.SetActive(true);
 
-
+        }
+    }
 }

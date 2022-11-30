@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerController : Looper {
     // Start is called before the first frame update
+
+    readonly string enemyUIRef = "EnemyUI";
+    readonly string playerUIRef = "PlayerUI";
+
     GameObject[] allMovePoints;
     List<GameObject> floors = new List<GameObject>();
     GameObject nextFloorToMove = null;
@@ -13,7 +17,7 @@ public class PlayerController : Looper {
 
     public bool isInBattle = false;
     
-    float movementSpeed = 0.04f;
+    float movementSpeed = 0.03f;
     // [SerializeField] float movementSpeed = 0.006f;
     int currentFloor = 1;
     bool shouldMove = true;
@@ -80,16 +84,20 @@ public class PlayerController : Looper {
 
 
     void OnCollisionEnter2D(Collision2D collision) {
-        if ( collision.transform.tag != "Monster" ) {
+        if ( collision.transform.tag != "Monster" || collision.transform.name == enemyUIRef ) {
             return;
         }
-        //begin battle....
+
+        //begins battle....
+        GameObject enemyUIObj = GameObject.Find(enemyUIRef);
+        EnemyUI enemyUIScript = enemyUIObj.GetComponent<EnemyUI>();
+        enemyUIScript.setEnemyObj(collision.transform.gameObject); 
+        
         isInBattle = true;
 
-        // Destroy(collision.gameObject);
     }
 
-    void finishBattle() {
-        isInBattle = true;
+    public void finishBattle() {
+        isInBattle = false;
     }
 }

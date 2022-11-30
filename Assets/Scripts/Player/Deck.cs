@@ -42,7 +42,7 @@ public class Deck : MonoBehaviour {
         return deckCards;
     }
 
-    void removeCardFromHand(Card card, RaycastHit2D hit) {
+    void removeCardFromHand(Card card, RaycastHit2D hit, int damage) {
         cardsInHand.Remove(card);
         usedDeckCards.Add(card);
 

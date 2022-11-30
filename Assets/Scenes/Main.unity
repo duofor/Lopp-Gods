@@ -769,7 +769,7 @@ GameObject:
   - component: {fileID: 110083222}
   - component: {fileID: 110083223}
   m_Layer: 5
-  m_Name: Player
+  m_Name: PlayerUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7964,7 +7964,7 @@ GameObject:
   - component: {fileID: 1626205740}
   - component: {fileID: 1626205741}
   m_Layer: 5
-  m_Name: Enemy
+  m_Name: EnemyUI
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8010,7 +8010,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8e2fc16c97818a4ca310821b6ca929c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 2393266838070798613, guid: 5d72b56a8f42f5e47b3de9c15023bead, type: 3}
+  enemy: {fileID: 0}
+  health: 0
 --- !u!1 &1640895147
 GameObject:
   m_ObjectHideFlags: 0
@@ -8527,10 +8528,22 @@ MonoBehaviour:
   battleGUI: {fileID: 406052760}
   player: {fileID: 1338081788}
   mapGenerator: {fileID: 1052602261}
-  monster: {fileID: 2770034593891351942, guid: 5d72b56a8f42f5e47b3de9c15023bead, type: 3}
   guiController: {fileID: 567674334}
   deck: {fileID: 615764199}
   cardPosition: {fileID: 849239960}
+  monsterPool:
+  - {fileID: 2770034593891351942, guid: 5d72b56a8f42f5e47b3de9c15023bead, type: 3}
+  - {fileID: 2770034593891351942, guid: 5d72b56a8f42f5e47b3de9c15023bead, type: 3}
+  - {fileID: 2770034593891351942, guid: 5d72b56a8f42f5e47b3de9c15023bead, type: 3}
+  - {fileID: 2770034593891351942, guid: 5d72b56a8f42f5e47b3de9c15023bead, type: 3}
+  - {fileID: 2770034593891351942, guid: 5d72b56a8f42f5e47b3de9c15023bead, type: 3}
+  - {fileID: 2770034593891351942, guid: 5d72b56a8f42f5e47b3de9c15023bead, type: 3}
+  - {fileID: 2770034593891351942, guid: 5d72b56a8f42f5e47b3de9c15023bead, type: 3}
+  - {fileID: 2770034593891351942, guid: 5d72b56a8f42f5e47b3de9c15023bead, type: 3}
+  - {fileID: 2770034593891351942, guid: 5d72b56a8f42f5e47b3de9c15023bead, type: 3}
+  - {fileID: 2770034593891351942, guid: 5d72b56a8f42f5e47b3de9c15023bead, type: 3}
+  - {fileID: 2770034593891351942, guid: 5d72b56a8f42f5e47b3de9c15023bead, type: 3}
+  - {fileID: 2770034593891351942, guid: 5d72b56a8f42f5e47b3de9c15023bead, type: 3}
 --- !u!4 &1800354544
 Transform:
   m_ObjectHideFlags: 0

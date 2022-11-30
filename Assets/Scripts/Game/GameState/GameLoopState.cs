@@ -9,6 +9,7 @@ public class GameLoopState : GameBaseState {
     }
 
     public override void updateState(GameStateManager gameStateManager) {
+        
         if (GameController.instance.player.isInBattle) {
             //We start the battle -> moving the starting state
             gameStateManager.switchState(gameStateManager.battleStartState);

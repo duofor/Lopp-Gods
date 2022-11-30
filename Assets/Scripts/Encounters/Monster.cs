@@ -7,13 +7,15 @@ public class Monster : MonoBehaviour {
     //basic attributes
     BoxCollider2D boxCollider;
 
-    [SerializeField] private GameObject droppedItem;
+    private int health = 2;
+
+    public delegate void TakeDamage(int health);
+    public static event TakeDamage monsterTakeDamageUpdateUI;
 
     public delegate void MonsterDeath();
     public static event MonsterDeath deathEvent;
 
     Vector3 initialPosition;
-
 
     void Awake() {
         initialPosition = transform.position;
@@ -23,29 +25,24 @@ public class Monster : MonoBehaviour {
     }
 
     void Update() {
-
+        if (health <= 0 ) {
+            Destroy(gameObject);
+        }
     }
 
     void OnDestroy() {
-        // deathEvent();
+        Card.cardUseEvent -= attacked;
     }
 
     public GameObject spawnAtLocation(Vector3 location) {
         GameObject monster = Instantiate(transform.gameObject, location, transform.rotation);
-        init(monster);
         
         return monster;
     }
 
-    void init(GameObject gameObject) {
-        // can be used to group spawned shit inside a parent object so that the hierarchy editor is clearer.
-        //transform.parent = util.findTargetByTagAndName("GameHandler", "GameHandler").transform;
-        
-        //basic init stuff. tbd later
-
-    }
-
-    void attacked(Card card, RaycastHit2D hit) {
+    void attacked(Card card, RaycastHit2D hit, int damage) {
+        Debug.Log(hit.transform.name);
+        takeDamage(damage);
         StartCoroutine( doSomeSmallShake( hit ) );
     }
 
@@ -72,4 +69,19 @@ public class Monster : MonoBehaviour {
 
         hit.transform.position = initialHitPosition;
     }
+
+    void takeDamage(int damage) {
+        this.health -= damage;
+        monsterTakeDamageUpdateUI(health);
+    }
+
+    public void setHealth( int healthAmount ) {
+        this.health = healthAmount;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+
 }

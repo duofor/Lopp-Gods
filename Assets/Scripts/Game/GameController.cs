@@ -11,14 +11,17 @@ public class GameController : GameStateManager {
 
     public PlayerController player;
     public MapGenerator mapGenerator;
-    public Monster monster;
     public GUIController guiController;
     public Deck deck; //this needs Editor Initialization for the beggining
     public CardPosition cardPosition;
 
+    //nu are ce cauta aici
+    public List<Monster> monsterPool; // make a pool of monsters.
 
     void Awake() {
         instance = this;
+
+        
     }
 
     void Start() {
@@ -28,19 +31,20 @@ public class GameController : GameStateManager {
         player.init();
         player.spawnPlayer();
 
-        GameObject randomTile = mapGenerator.getRandomTile();
-        monster.spawnAtLocation(randomTile.transform.position);
-
         //make gui camera same as main camera.
         guiController.guiCamera.transform.position = Camera.main.transform.position;
         guiController.guiCamera.transform.localScale = Camera.main.transform.localScale;
+
     }
 
     void Update() {
-        if( util.getAllObjectsWithTag("Monster").Length == 0 ) {
+        if( util.getAllObjectsWithTag("Monster").Length < 2 ) {
             //spawn one monster
             GameObject randomTile = mapGenerator.getRandomTile();
-            monster.spawnAtLocation(randomTile.transform.position);
+            Monster monsterToSpawn = monsterPool[0];
+            monsterToSpawn.spawnAtLocation(randomTile.transform.position);
+
+            monsterPool.Remove(monsterPool[0]);
         } 
 
 

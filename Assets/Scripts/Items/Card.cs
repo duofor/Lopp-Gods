@@ -6,8 +6,9 @@ using UnityEngine.Events;
 public class Card : MonoBehaviour {
 
     Util util = new Util();    
+    readonly string enemyUIRef = "EnemyUI";
 
-    public delegate void CardUsed( Card card, RaycastHit2D hit );
+    public delegate void CardUsed( Card card, RaycastHit2D hit, int damage );
     public static event CardUsed cardUseEvent;
 
     //main card sprite
@@ -79,7 +80,7 @@ public class Card : MonoBehaviour {
             lineRenderer.SetPosition( 1, new Vector3(mousePos.x ,mousePos.y, 0) );
 
             RaycastHit2D hit = getTargetAtMouse();
-            if (hit && hit.collider.name == "Enemy" ) {
+            if (hit && hit.collider.name == enemyUIRef ) {
             //apply some highlight...
             ///// Can generate 4 copies of the sprite, set them black, move them up down left right of the base sprite so we create
             /////an outline effect, then set teh color to wahtever
@@ -90,12 +91,14 @@ public class Card : MonoBehaviour {
             deselectCard();
             
             RaycastHit2D hit = getTargetAtMouse();
-            if (hit && hit.collider.name == "Enemy" ) {
+            if (hit && hit.collider.name == enemyUIRef ) {
                 canTarget = false;
                 canUseCard = true;
 
             // fire some event 
-                cardUseEvent(this, hit);
+                int cardDamage = 1;
+
+                cardUseEvent(this, hit, cardDamage);
             // Event scope 
             //     --> Send stuff to the target.(dmg, info. etc)
             //     Update deck cards.

@@ -16,7 +16,7 @@ public class GameBattleStartState : GameBaseState {
     }
     
     public override void updateState(GameStateManager gameStateManager) {
-
+        gameStateManager.switchState(gameStateManager.battleState); // go to battling state
     }
 
     void enableGUI() {
