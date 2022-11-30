@@ -101,14 +101,17 @@ public class Card : MonoBehaviour {
             //     Update deck cards.
             //     play card use animation(move a litte to front )
             //     play card ability animation(attack, def utility... w/e it is play it)
+                
+
+            } else {
+                lineRenderer.SetPosition( 0, new Vector3(555 ,555, 0) );
+                lineRenderer.SetPosition( 1, new Vector3(555 ,555, 0) );
             }
         
 
 
         } else {
             canTarget = false;
-            lineRenderer.SetPosition( 0, new Vector3(555 ,555, 0) );
-            lineRenderer.SetPosition( 1, new Vector3(555 ,555, 0) );
         }
 
 
@@ -132,6 +135,13 @@ public class Card : MonoBehaviour {
     }
 
     public void useCard() {
-        Destroy(transform.gameObject);
+
+        //this can play some animation....whatever... for now i leave it empty.
+
+        //temp hack to remove the4 card from UI
+        transform.position = new Vector3(555,555,0);
+        //remove the line renderer from the screen.
+        lineRenderer.SetPosition( 0, new Vector3(555 ,555, 0) );
+        lineRenderer.SetPosition( 1, new Vector3(555 ,555, 0) );
     }
 }

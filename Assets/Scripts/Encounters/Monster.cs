@@ -27,7 +27,7 @@ public class Monster : MonoBehaviour {
     }
 
     void OnDestroy() {
-        deathEvent();
+        // deathEvent();
     }
 
     public GameObject spawnAtLocation(Vector3 location) {

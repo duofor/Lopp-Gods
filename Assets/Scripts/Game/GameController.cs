@@ -4,6 +4,7 @@ using System.IO;
 using UnityEngine;
 
 public class GameController : GameStateManager {
+    private Util util = new Util();
     // Start is called before the first frame update
     // [SerializeField] public MapGenerator mapGenerator;
     public static GameController instance;
@@ -12,16 +13,12 @@ public class GameController : GameStateManager {
     public MapGenerator mapGenerator;
     public Monster monster;
     public GUIController guiController;
-    public Deck deck;
+    public Deck deck; //this needs Editor Initialization for the beggining
     public CardPosition cardPosition;
 
-    [SerializeField] private Card testCard = null;
-
-    private Util util = new Util();
 
     void Awake() {
         instance = this;
-        Monster.deathEvent += rewardPlayerWithCard; 
     }
 
     void Start() {
@@ -50,23 +47,12 @@ public class GameController : GameStateManager {
 
     }
 
-    void rewardPlayerWithCard() { // maybe this should not be an event.
-        //add a card to deck
-        if (testCard && deck) {
-            if ( deck.getDeck().Count > 15 ) { //its max bro
-                return;
-            } 
-            // if card does not have Trigger checked on BoxCollider. it will collide with fcking player
-            Card cardGameObject = Instantiate(testCard, deck.transform.position, deck.transform.rotation);
-            deck.addCardToDeck(cardGameObject);
-        }
+    public void initStartBattleCards(int cardAmount) {
+        // if card does not have Trigger checked on BoxCollider. it will collide with fcking player
+
+        List<Card> startingCards = deck.getRandomCardsFromDeck(cardAmount);
+
 
         // Debug.Log("I should receive a CARD for killing you");
     }
-
-    public void battle() {
-        // Debug.Log("Starting the battle");
-        rewardPlayerWithCard();
-    }
-
 }

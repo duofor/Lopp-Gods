@@ -12,19 +12,16 @@ public class CardPosition : MonoBehaviour {
     private Deck deck;
 
     float gapFromOneItemToTheNextOne; //gap needed between each card
-    int lastShuffleCardCounter = 0; //counter to know how many cards we shuffled last time.
     float initialPosition_X; // initial position is used to always move cards towards the center
 
-    [SerializeField] private GameObject cardPrefab; // used for testing
-
     void Start() {
-        gapFromOneItemToTheNextOne = 0.5f;
+        gapFromOneItemToTheNextOne = 1f;  /// space between cards
         initialPosition_X = transform.position.x;
+        Deck.cardHandUpdateEvent += updateUI; 
     }
 
 
     void Update() {
-        Deck.deckWasUpdated += initCards; 
         if (cards == null || cards.Count == 0) //if list is null, stop function
             return;
         
@@ -32,50 +29,44 @@ public class CardPosition : MonoBehaviour {
         applyTilt();
     }
 
-    void initCards(List<Card> cardsFromDeck) {
-        cards = cardsFromDeck;
+    void updateUI(List<Card> cardsFromHand) {
+        cards = cardsFromHand;
     }
 
     public void updateCardPositions() {
-
-
         //first we want to arrange them one near the other
         //first init for ==0                   if a new card was added since last shuffle
         float mediumPositionX = 0.0f;
+        float count = 0.0f;
 
-        if ( lastShuffleCardCounter == 0 || lastShuffleCardCounter != cards.Count ) {
-            lastShuffleCardCounter = cards.Count; 
-            float count = 0.0f;
-
-            foreach (Card go in cards) {
-                go.transform.position = start.position; //relocating my card to the Start Position
-                go.transform.position += new Vector3 (( count * gapFromOneItemToTheNextOne), 0, 0); // Moving my card 1f to the right
-                count += 1f;
-                mediumPositionX += go.transform.position.x;
-            }
-
-            if (cards.Count <= 2 ) { // its good enough
-                return;
-            }
-            //basically we spawn an object, set it into the middle of the cards, calculate offset vs Hand Starting position, the temp obj to drag other cards to the offset.
-            //we switch parents so we can drag the whole group.
-            GameObject temp = new GameObject();
-            GameObject tempPositionAdjuster = Instantiate(temp, new Vector3(mediumPositionX / cards.Count, transform.position.y, transform.position.z), transform.rotation );
-
-            foreach (Card go in cards) {
-                go.transform.parent = tempPositionAdjuster.transform;
-            }
-            float offset = transform.position.x + tempPositionAdjuster.transform.position.x / (2.0f * cards.Count / 6);
-            tempPositionAdjuster.transform.position = new Vector3(transform.position.x + offset, transform.position.y, transform.position.z);
-
-            foreach (Card go in cards) {
-                go.transform.parent = transform;
-            }
-
-            Destroy(tempPositionAdjuster); //cleanup leftover temp objs
-            Destroy(temp);
-        
+        foreach (Card go in cards) {
+            go.transform.position = start.position; //relocating my card to the Start Position
+            go.transform.position += new Vector3 (( count * gapFromOneItemToTheNextOne), 0, 0); // Moving my card 1f to the right
+            count += 1f;
+            mediumPositionX += go.transform.position.x;
         }
+
+        if (cards.Count <= 2 ) { // its good enough
+            return;
+        }
+        //basically we spawn an object, set it into the middle of the cards, calculate offset vs Hand Starting position, the temp obj to drag other cards to the offset.
+        //we switch parents so we can drag the whole group.
+        GameObject temp = new GameObject();
+        GameObject tempPositionAdjuster = Instantiate(temp, new Vector3(mediumPositionX / cards.Count, transform.position.y, transform.position.z), transform.rotation );
+
+        foreach (Card go in cards) {
+            go.transform.parent = tempPositionAdjuster.transform;
+        }
+        float offset = transform.position.x + tempPositionAdjuster.transform.position.x / (2.0f * cards.Count / 6);
+        tempPositionAdjuster.transform.position = new Vector3(transform.position.x + offset, transform.position.y, transform.position.z);
+
+        foreach (Card go in cards) {
+            go.transform.parent = transform;
+        }
+
+        Destroy(tempPositionAdjuster); //cleanup leftover temp objs
+        Destroy(temp);
+        
     }
 
     private void applyTilt() {
@@ -91,6 +82,5 @@ public class CardPosition : MonoBehaviour {
             card.transform.rotation = Quaternion.Slerp(card.transform.rotation, rotation, 50.0f * Time.deltaTime);
         }
     }
-
 
 }
