@@ -9,7 +9,6 @@ public class CardPosition : MonoBehaviour {
     public List<Card> cards {get; set;}
     public Transform start; // initial card position
     [SerializeField] private GameObject tiltCenter;
-    private Deck deck;
 
     float gapFromOneItemToTheNextOne; //gap needed between each card
     float initialPosition_X; // initial position is used to always move cards towards the center
@@ -35,7 +34,6 @@ public class CardPosition : MonoBehaviour {
 
     public void updateCardPositions() {
         //first we want to arrange them one near the other
-        //first init for ==0                   if a new card was added since last shuffle
         float mediumPositionX = 0.0f;
         float count = 0.0f;
 

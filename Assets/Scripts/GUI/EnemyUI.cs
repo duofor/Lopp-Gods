@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyUI : MonoBehaviour {
 
@@ -10,6 +11,10 @@ public class EnemyUI : MonoBehaviour {
 
     SpriteRenderer spriteRenderer;
     BoxCollider2D boxCollider;
+
+    //health bar
+    public Slider healthSlider;
+    public Color healthColor;
 
     void Awake() {
         spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
@@ -22,6 +27,9 @@ public class EnemyUI : MonoBehaviour {
         if (enemy == null || spriteRenderer == null) {
             spriteRenderer.enabled = false;
         }
+
+        //trash hp bar
+        healthSlider.transform.position = transform.position - new Vector3 (0, spriteRenderer.size.y * 2.4f , 0);
     }
 
 
@@ -55,6 +63,22 @@ public class EnemyUI : MonoBehaviour {
         enemy = enemyObj;
         init(); //all the components get init after setting the obj
         health = enemyObj.GetComponent<Monster>().getHealth();
+
+        //trash hp bar
+        healthSlider.transform.localScale = new Vector3(spriteRenderer.size.x + spriteRenderer.size.x * 2.4f, spriteRenderer.size.y + spriteRenderer.size.y * 2.4f , 0);
+    }
+
+    private void createHealthBar() {
+
+    }
+
+    public void updateHealthBar() {
+        healthSlider.value = health;
+        // healthSlider.fillRect.GetComponentInChildren<Image>().color = Color.Lerp(low, high, healthSlider.normalizedValue);
+
+        if (healthSlider.value < 1) {
+            healthSlider.fillRect.GetComponentInChildren<Image>().color = new Color(0, 0, 0, 0);
+        }
     }
 
 }

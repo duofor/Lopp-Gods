@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour {
     
-    public static readonly Inventory instance = new Inventory();
-
     private List<GameObject> inventorySlots; 
     
     void Awake() {
