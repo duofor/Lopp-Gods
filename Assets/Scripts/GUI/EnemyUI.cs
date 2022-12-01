@@ -8,6 +8,7 @@ public class EnemyUI : MonoBehaviour {
     [SerializeField] private GameObject enemy;
 
     public int health; 
+    private int fullHealth; 
 
     SpriteRenderer spriteRenderer;
     BoxCollider2D boxCollider;
@@ -21,6 +22,8 @@ public class EnemyUI : MonoBehaviour {
         boxCollider = gameObject.AddComponent<BoxCollider2D>();
 
         Monster.monsterTakeDamageUpdateUI += updateGUI;
+        healthColor = Color.red;
+
     }
 
     void Update() {
@@ -30,6 +33,7 @@ public class EnemyUI : MonoBehaviour {
 
         //trash hp bar
         healthSlider.transform.position = transform.position - new Vector3 (0, spriteRenderer.size.y * 2.4f , 0);
+        updateHealthBar();
     }
 
 
@@ -66,19 +70,18 @@ public class EnemyUI : MonoBehaviour {
 
         //trash hp bar
         healthSlider.transform.localScale = new Vector3(spriteRenderer.size.x + spriteRenderer.size.x * 2.4f, spriteRenderer.size.y + spriteRenderer.size.y * 2.4f , 0);
+        healthSlider.value = health;
+        fullHealth = health;
     }
 
     private void createHealthBar() {
 
     }
 
-    public void updateHealthBar() {
-        healthSlider.value = health;
-        // healthSlider.fillRect.GetComponentInChildren<Image>().color = Color.Lerp(low, high, healthSlider.normalizedValue);
-
-        if (healthSlider.value < 1) {
-            healthSlider.fillRect.GetComponentInChildren<Image>().color = new Color(0, 0, 0, 0);
-        }
+    private void updateHealthBar() {
+        float value = health * 100 / fullHealth;
+        Debug.Log(value);
+        healthSlider.value = value / 100;
     }
 
 }
