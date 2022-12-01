@@ -1,12 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Card : MonoBehaviour {
 
     Util util = new Util();    
-    readonly string enemyUIRef = "EnemyUI";
 
     public delegate void CardUsed( Card card, RaycastHit2D hit, int damage );
     public static event CardUsed cardUseEvent;
@@ -78,27 +76,23 @@ public class Card : MonoBehaviour {
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             lineRenderer.SetPosition( 0, new Vector3(startMousePos.x ,startMousePos.y, 0) );
             lineRenderer.SetPosition( 1, new Vector3(mousePos.x ,mousePos.y, 0) );
-
-            RaycastHit2D hit = getTargetAtMouse();
-            if (hit && hit.collider.name == enemyUIRef ) {
-            //apply some highlight...
-            ///// Can generate 4 copies of the sprite, set them black, move them up down left right of the base sprite so we create
-            /////an outline effect, then set teh color to wahtever
-                
-            }
-
         } else if ( Input.GetMouseButtonUp(0) && canTarget ) {
             deselectCard();
             
             RaycastHit2D hit = getTargetAtMouse();
-            if (hit && hit.collider.name == enemyUIRef ) {
+            if (hit && hit.collider.tag == util.enemyUITag ) {
                 canTarget = false;
                 canUseCard = true;
 
             // fire some event 
                 int cardDamage = 1;
 
-                cardUseEvent(this, hit, cardDamage);
+                if ( hit.transform.gameObject == null ) {
+                    Debug.LogError(hit + "  is null ");
+                } else {
+                    cardUseEvent(this, hit, cardDamage);
+                }
+
             // Event scope 
             //     --> Send stuff to the target.(dmg, info. etc)
             //     Update deck cards.

@@ -38,13 +38,22 @@ public class GameController : GameStateManager {
     }
 
     void Update() {
-        if( util.getAllObjectsWithTag("Monster").Length < 2 ) {
+        if( util.getAllObjectsWithTag("Monster").Count < 2 ) {
             //spawn one monster
+            if (monsterPool.Count == 0 )
+                return;
+                
             GameObject randomTile = mapGenerator.getRandomTile();
-            Monster monsterToSpawn = monsterPool[0];
-            monsterToSpawn.spawnAtLocation(randomTile.transform.position);
 
-            monsterPool.Remove(monsterPool[0]);
+            Debug.Log(randomTile);
+
+
+            Monster monsterToSpawn = monsterPool[0];
+            Monster monsterToSpawn2 = monsterPool[1];
+
+            randomTile.GetComponent<Tile>().addEncounter(monsterToSpawn);
+            randomTile.GetComponent<Tile>().addEncounter(monsterToSpawn2);
+            Debug.Log("Spawning some trash");
         } 
 
 

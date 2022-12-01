@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class EnemyUI : MonoBehaviour {
 
-    [SerializeField] private GameObject enemy;
+    [SerializeField] private Monster enemy;
 
     public int health; 
     private int fullHealth; 
@@ -16,23 +16,29 @@ public class EnemyUI : MonoBehaviour {
     //health bar
     public Slider healthSlider;
     public Color healthColor;
+    
+    //spawn positions
+    Dictionary<GameObject, Vector3> spawnPositions;
+
+
 
     void Awake() {
         spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
         boxCollider = gameObject.AddComponent<BoxCollider2D>();
 
-        Monster.monsterTakeDamageUpdateUI += updateGUI;
         healthColor = Color.red;
 
+        spriteRenderer.sortingOrder = 2; 
     }
 
     void Update() {
         if (enemy == null || spriteRenderer == null) {
             spriteRenderer.enabled = false;
         }
+        
+        if ( enemy != null )
+            updateGUI();
 
-        //trash hp bar
-        healthSlider.transform.position = transform.position - new Vector3 (0, spriteRenderer.size.y * 2.4f , 0);
         updateHealthBar();
     }
 
@@ -47,26 +53,26 @@ public class EnemyUI : MonoBehaviour {
         spriteRenderer.enabled = true;
     } 
 
-    public GameObject getEnemyObject() {
+    public Monster getEnemyObject() {
         return enemy;
     }
 
-    private void updateGUI(int healthUpdated) {
-        this.health = healthUpdated;
+    private void updateGUI() {
+        health = enemy.GetComponent<Monster>().getHealth();
     }
 
     public int getHealth() {
         return health;
     }
 
-    public void setEnemyObj( GameObject enemyObj ) {
+    public void setEnemyObj( Monster enemyObj ) {
         if (enemyObj == null) {
             return;
         }
         Debug.Log("trying to set " + enemyObj.transform.name);
         enemy = enemyObj;
         init(); //all the components get init after setting the obj
-        health = enemyObj.GetComponent<Monster>().getHealth();
+        health = enemyObj.getHealth();
 
         //trash hp bar
         healthSlider.transform.localScale = new Vector3(spriteRenderer.size.x + spriteRenderer.size.x * 2.4f, spriteRenderer.size.y + spriteRenderer.size.y * 2.4f , 0);
@@ -74,14 +80,16 @@ public class EnemyUI : MonoBehaviour {
         fullHealth = health;
     }
 
-    private void createHealthBar() {
-
+    private void updateHealthBar() {
+        healthSlider.transform.position = transform.position - new Vector3 (0, spriteRenderer.bounds.size.y /1.6f , 0);
+        if ( health > 0 && fullHealth > 0 ) {
+            float value = health * 100 / fullHealth;
+            healthSlider.value = value / 100;
+        }
     }
 
-    private void updateHealthBar() {
-        float value = health * 100 / fullHealth;
-        Debug.Log(value);
-        healthSlider.value = value / 100;
+    private Monster getEnemyObj() {
+        return enemy;
     }
 
 }

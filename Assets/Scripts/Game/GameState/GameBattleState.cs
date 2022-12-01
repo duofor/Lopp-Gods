@@ -5,30 +5,39 @@ using UnityEngine;
 public class GameBattleState : GameBaseState {
     Util util = new Util();
 
-    private GameObject enemyObj;
+    private List<GameObject> enemyObjs;
 
     public override void enterState(GameStateManager gameStateManager) {
         Debug.Log("Entered battle state");
-        enemyObj = GameObject.Find("EnemyUI");
-        
+        enemyObjs = util.getAllObjectsWithTag("EnemyUI");
 
     }
 
     public override void updateState(GameStateManager gameStateManager) {
-        // here goes the battle logic
-        int enemyHealth = enemyObj.GetComponent<EnemyUI>().getHealth();
-
         //end of battle trigger this >>
-        if ( enemyHealth <= 0 ) {
+        if ( getTotalMonstersHealth() <= 0 ) {
             GameController.instance.player.finishBattle();
+            
             gameStateManager.battleGUI.enabled = false; //disable gui when battle ends
+            GameController.instance.deck.moveCardsFromHandToDeck();
+            GameController.instance.deck.moveCardsFromUsedDeckToPrimaryDeck();
+
+            GameController.instance.player.isInBattle = false;
+            GameController.instance.player.getNextFloorToMove().endEncounter();
+
             gameStateManager.switchState( gameStateManager.loopState ); //go back to loop state
         }
     }
 
-    private void disableGUI() {
-
+    private int getTotalMonstersHealth() {
+        int mobHp = 0;
+        foreach (GameObject enemyGo in enemyObjs ) {
+            EnemyUI script = enemyGo.GetComponent<EnemyUI>();
+            if ( script.enabled == true ) {
+                mobHp += script.getHealth();
+            }
+        }
+        return mobHp;
     }
-
 }
 

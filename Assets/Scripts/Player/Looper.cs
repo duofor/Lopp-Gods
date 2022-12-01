@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Looper : MonoBehaviour {
     
-    int loopsCompleted = 0;
-
     void Start() {
     }
 

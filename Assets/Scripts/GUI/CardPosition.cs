@@ -11,11 +11,9 @@ public class CardPosition : MonoBehaviour {
     [SerializeField] private GameObject tiltCenter;
 
     float gapFromOneItemToTheNextOne; //gap needed between each card
-    float initialPosition_X; // initial position is used to always move cards towards the center
 
     void Start() {
         gapFromOneItemToTheNextOne = 1f;  /// space between cards
-        initialPosition_X = transform.position.x;
         Deck.cardHandUpdateEvent += updateUI; 
     }
 
@@ -23,9 +21,12 @@ public class CardPosition : MonoBehaviour {
     void Update() {
         if (cards == null || cards.Count == 0) //if list is null, stop function
             return;
-        
-        updateCardPositions();
-        applyTilt();
+        if( cards[0] ) {
+            updateCardPositions();
+            applyTilt();
+        }
+
+
     }
 
     void updateUI(List<Card> cardsFromHand) {

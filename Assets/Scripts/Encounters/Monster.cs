@@ -8,25 +8,20 @@ public class Monster : MonoBehaviour {
     BoxCollider2D boxCollider;
 
     private int health = 2;
-
-    public delegate void TakeDamage(int health);
-    public static event TakeDamage monsterTakeDamageUpdateUI;
-
-    public delegate void MonsterDeath();
-    public static event MonsterDeath deathEvent;
-
+    public bool canDestroy;
     Vector3 initialPosition;
 
     void Awake() {
         initialPosition = transform.position;
         boxCollider = GetComponent<BoxCollider2D>();
         Card.cardUseEvent += attacked;
-        // Debug.Log("BLllaarrhhhh spawned: " + transform.gameObject.name);
+
+        canDestroy = false;
     }
 
     void Update() {
-        if (health <= 0 ) {
-            Destroy(gameObject);
+        if (canDestroy) {
+            Destroy(transform.gameObject);
         }
     }
 
@@ -34,19 +29,18 @@ public class Monster : MonoBehaviour {
         Card.cardUseEvent -= attacked;
     }
 
-    public GameObject spawnAtLocation(Vector3 location) {
-        GameObject monster = Instantiate(transform.gameObject, location, transform.rotation);
-        
-        return monster;
-    }
-
     void attacked(Card card, RaycastHit2D hit, int damage) {
-        Debug.Log(hit.transform.name);
+        //stupid logic to bypass event being called everywhere
+        EnemyUI script = hit.transform.gameObject.GetComponent<EnemyUI>();
+        if ( script.getEnemyObject().gameObject != transform.gameObject ){
+            return;
+        }
+        
         takeDamage(damage);
-        StartCoroutine( doSomeSmallShake( hit ) );
+        StartCoroutine( doSomeSmallShakeAndDestroyObj( hit ) ); // this also destroyes
     }
 
-    IEnumerator doSomeSmallShake( RaycastHit2D hit ) {
+    IEnumerator doSomeSmallShakeAndDestroyObj( RaycastHit2D hit ) {
         Debug.Log("yeahh");
         Vector3 initialHitPosition = hit.transform.position;
 
@@ -68,11 +62,13 @@ public class Monster : MonoBehaviour {
         }
 
         hit.transform.position = initialHitPosition;
+        if (health <= 0) {
+            canDestroy = true;
+        }
     }
 
     void takeDamage(int damage) {
         this.health -= damage;
-        monsterTakeDamageUpdateUI(health);
     }
 
     public void setHealth( int healthAmount ) {

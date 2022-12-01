@@ -89,7 +89,7 @@ public class Deck : MonoBehaviour {
         deckCards = instantiatedCards;
     }
 
-    void moveCardsFromUsedDeckToPrimaryDeck() {
+    public void moveCardsFromUsedDeckToPrimaryDeck() {
         if (usedDeckCards.Count == 0) { //avoid stupid error
             return;
         }
@@ -107,5 +107,12 @@ public class Deck : MonoBehaviour {
         usedDeckCards.Clear();
 }
 
+    public void moveCardsFromHandToDeck() {
+        foreach ( Card card in cardsInHand ) {
+            addCardToDeck(card);
+            card.transform.position = new Vector3(555, 555, 0);
+        }
+        cardsInHand.Clear();
+    }
 }
 

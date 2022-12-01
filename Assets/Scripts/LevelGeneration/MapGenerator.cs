@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour {
     // Start is called before the first frame update
+    Util util = new Util();
+
     Vector3 cameraPosition;
     [SerializeField] private GameObject tile; 
     [SerializeField] private GameObject spawnPointIndicator; // to use later 
@@ -13,7 +15,6 @@ public class MapGenerator : MonoBehaviour {
     private GameObject lastTileSpawned;
     private GameObject parentObject;
 
-    Util util = new Util();
     int floorNumber = 1;
 
     void Start() {
@@ -73,7 +74,6 @@ public class MapGenerator : MonoBehaviour {
         }
         GameObject newTile = Instantiate(tile, spawnPosition, transform.rotation);
         newTile.transform.parent = parentObject.transform;
-        // Debug.Log(newTile.transform.position);
         
         lastTileSpawned = newTile;
 

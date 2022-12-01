@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class PlayerController : Looper {
     // Start is called before the first frame update
-
-    readonly string enemyUIRef = "EnemyUI";
-    readonly string playerUIRef = "PlayerUI";
+    Util util = new Util();
 
     GameObject[] allMovePoints;
     List<GameObject> floors = new List<GameObject>();
-    GameObject nextFloorToMove = null;
+    Tile nextFloorToMove = null;
     Vector3 targetPosition;
 
     Rigidbody2D rb;    
@@ -40,8 +38,12 @@ public class PlayerController : Looper {
         }
 
         if ( transform.position == targetPosition) {
-            // Debug.Log("getting new position");
-            shouldMove = true;
+            List<Monster> encounter = nextFloorToMove.GetComponent<Tile>().getEncounter();
+            if ( encounter.Count > 0 ) {
+                beginBattle(encounter);
+            } else {
+                shouldMove = true;
+            }
         } else {
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, movementSpeed );
             // rb.MovePosition(targetPosition * movementSpeed );
@@ -57,7 +59,7 @@ public class PlayerController : Looper {
         return targetPosition;
     }
 
-    GameObject getNextFloor() {
+    Tile getNextFloor() {
         if (currentFloor == allMovePoints.Length) {
             currentFloor = 0;
         }  
@@ -71,7 +73,7 @@ public class PlayerController : Looper {
         foreach (GameObject gameObject in floors) {
             if (gameObject.name == objectName ) {
                 currentFloor += 1;
-                return gameObject;
+                return gameObject.GetComponent<Tile>();
             }
         }
         return null;
@@ -82,22 +84,25 @@ public class PlayerController : Looper {
         transform.position = spawnPoint.transform.position;
     }
 
-
-    void OnCollisionEnter2D(Collision2D collision) {
-        if ( collision.transform.tag != "Monster" || collision.transform.name == enemyUIRef ) {
-            return;
-        }
-
-        //begins battle....
-        GameObject enemyUIObj = GameObject.Find(enemyUIRef);
-        EnemyUI enemyUIScript = enemyUIObj.GetComponent<EnemyUI>();
-        enemyUIScript.setEnemyObj(collision.transform.gameObject); 
-        
-        isInBattle = true;
-
-    }
-
     public void finishBattle() {
         isInBattle = false;
+    }
+
+    private void beginBattle(List<Monster> enemies) {
+        //begins battle....
+        foreach (Monster enemy in enemies ) {
+            //set the enemy obj in one of the available UIs
+            EnemyUI enemyUIScript = util.getNextEnemyUIRef();
+
+            Debug.Log(enemyUIScript.name);
+
+            enemyUIScript.setEnemyObj(enemy); 
+        }
+        
+        isInBattle = true;
+    }
+
+    public Tile getNextFloorToMove() {
+        return nextFloorToMove;
     }
 }

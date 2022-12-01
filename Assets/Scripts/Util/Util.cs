@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Util {
 
+    public readonly string enemyUITag = "EnemyUI";
+    public readonly string enemyFloorPosition = "EnemyFloorPosition";
+
     public GameObject findRandomTargetByTag(string tag) {
         GameObject[] otherObjects = GameObject.FindGameObjectsWithTag(tag);
 
@@ -27,10 +30,15 @@ public class Util {
         return null;
     }
 
-    public GameObject[] getAllObjectsWithTag(string tag) {
+    public List<GameObject> getAllObjectsWithTag(string tag) {
         GameObject[] otherObjects = GameObject.FindGameObjectsWithTag(tag);
+        List<GameObject> objs = new List<GameObject>();
 
-        return otherObjects;
+        foreach (GameObject go in otherObjects) {
+            objs.Add(go);
+        }
+
+        return objs;
     }
 
     public Vector3 getMouseWorldPosition() {
@@ -58,4 +66,26 @@ public class Util {
         lineRenderer.positionCount = pointList.Count;
         lineRenderer.SetPositions(pointList.ToArray());
     }
+
+    public EnemyUI getNextEnemyUIRef() {
+        for (int i = 1; i < 10; i++) {
+            string enemyUIName = "EnemyUI_" + i.ToString();
+            GameObject enemyUI = GameObject.Find(enemyUIName);
+            
+            if (enemyUI == null)
+                return null;
+            
+            EnemyUI enemyUIScript = enemyUI.GetComponent<EnemyUI>();
+            Monster enemyObj = enemyUIScript.getEnemyObject();
+            
+            if (enemyUIScript && enemyObj != null ) {
+                continue;
+            }
+
+            return enemyUIScript;
+        }
+
+        return null;
+    } 
+
 }

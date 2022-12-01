@@ -13,9 +13,10 @@ public class GameLoopState : GameBaseState {
         if (GameController.instance.player.isInBattle) {
             //We start the battle -> moving the starting state
             gameStateManager.switchState(gameStateManager.battleStartState);
+        } else {
+            GameController.instance.player.loop();
         }
 
-        GameController.instance.player.loop();
     }
 
 }
