@@ -9,23 +9,14 @@ public class GameBattleState : GameBaseState {
 
     public override void enterState(GameStateManager gameStateManager) {
         Debug.Log("Entered battle state");
-        enemyObjs = util.getAllObjectsWithTag("EnemyUI");
+        enemyObjs = util.getAllObjectsWithTag(util.enemyUITag);
 
     }
 
     public override void updateState(GameStateManager gameStateManager) {
         //end of battle trigger this >>
         if ( getTotalMonstersHealth() <= 0 ) {
-            GameController.instance.player.finishBattle();
-            
-            gameStateManager.battleGUI.enabled = false; //disable gui when battle ends
-            GameController.instance.deck.moveCardsFromHandToDeck();
-            GameController.instance.deck.moveCardsFromUsedDeckToPrimaryDeck();
-
-            GameController.instance.player.isInBattle = false;
-            GameController.instance.player.getNextFloorToMove().endEncounter();
-
-            gameStateManager.switchState( gameStateManager.loopState ); //go back to loop state
+            gameStateManager.switchState( gameStateManager.battleRewardState ); //go to reward state
         }
     }
 

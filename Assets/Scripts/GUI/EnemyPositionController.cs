@@ -51,7 +51,6 @@ public class EnemyPositionController : MonoBehaviour {
             if (gapFromOneItemToTheNextOne == 0f) { //first mob position hack
                 go.transform.position = new Vector3(xSize, initialPosition.y , 0); //relocating my card to the Start Position
             } else {
-                Debug.Log("re");
                 go.transform.position = new Vector3(xSize + (xSize * 0.2f), firstPosRef_Y , 0); //relocating my card to the Start Position
             }
             

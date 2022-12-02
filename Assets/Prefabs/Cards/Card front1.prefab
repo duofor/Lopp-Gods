@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9141344313133566}
   - component: {fileID: 6813471896052748789}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Details_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 5
   m_Sprite: {fileID: 1629502028, guid: b2713bbf286ea3b4d8cf4478d348ee16, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4937352271068039218}
   - component: {fileID: 4430729137696322841}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Details_31
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 5
   m_Sprite: {fileID: -1721531094, guid: b2713bbf286ea3b4d8cf4478d348ee16, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6164440946622896066}
   - component: {fileID: 4680513331049276670}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Cards_18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,7 +240,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: -644079835, guid: d529f63f32c1a2b438dc3ffcf58f7a73, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 3183302620450542647}
   - component: {fileID: -5297669896517118014}
   - component: {fileID: 5483307060426067401}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Card front1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,8 +279,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5229332580041227260}
-  m_LocalRotation: {x: 0, y: 0, z: -0.026349686, w: 0.9996528}
-  m_LocalPosition: {x: 0.48125458, y: -3.0059297, z: 96.85}
+  m_LocalRotation: {x: 0, y: 0, z: -0.089349434, w: 0.99600035}
+  m_LocalPosition: {x: 2.4860973, y: -2.7001884, z: 96.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -495,7 +495,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7199740840306809457}
   - component: {fileID: 2575829332932800597}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Cards_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -557,7 +557,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 2120042908, guid: 71ad172f81917dc4c88b385499ba85c4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -579,7 +579,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6357752030348106109}
   - component: {fileID: 5143157379936284025}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Details_16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -641,7 +641,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 5
   m_Sprite: {fileID: -1797174535, guid: b2713bbf286ea3b4d8cf4478d348ee16, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -663,7 +663,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2492583842736791316}
   - component: {fileID: 9079494853382304081}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Elements_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -725,7 +725,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_Sprite: {fileID: -1097064367, guid: d529f63f32c1a2b438dc3ffcf58f7a73, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -747,7 +747,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1505906014712120791}
   - component: {fileID: 4962151197593508208}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Details_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -809,7 +809,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 5
   m_Sprite: {fileID: 349058381, guid: b2713bbf286ea3b4d8cf4478d348ee16, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -831,7 +831,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5557527469517463001}
   - component: {fileID: 2751648309721095336}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Elements_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -893,7 +893,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 5
   m_Sprite: {fileID: -1431562146, guid: d529f63f32c1a2b438dc3ffcf58f7a73, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -915,7 +915,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8263506732426946372}
   - component: {fileID: 8493755937408452398}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Example items_16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -977,7 +977,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_Sprite: {fileID: -509220665, guid: 91ece539279118a438c900dfb08582ed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

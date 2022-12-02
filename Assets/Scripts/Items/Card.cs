@@ -81,24 +81,24 @@ public class Card : MonoBehaviour {
             
             RaycastHit2D hit = getTargetAtMouse();
             if (hit && hit.collider.tag == util.enemyUITag ) {
-                canTarget = false;
-                canUseCard = true;
 
             // fire some event 
                 int cardDamage = 1;
-
+                
                 if ( hit.transform.gameObject == null ) {
                     Debug.LogError(hit + "  is null ");
                 } else {
-                    cardUseEvent(this, hit, cardDamage);
-                }
+                    if ( hit.transform.GetComponent<EnemyUI>().getEnemyObject() != null ) {
+                        cardUseEvent(this, hit, cardDamage);
+                        canUseCard = true;
+                        canTarget = false;
 
-            // Event scope 
-            //     --> Send stuff to the target.(dmg, info. etc)
-            //     Update deck cards.
-            //     play card use animation(move a litte to front )
-            //     play card ability animation(attack, def utility... w/e it is play it)
-                
+                        transform.position = new Vector3(555,555,0); // use card hack. We only remove the card from teh screen when we use it.
+                    } else {
+                        lineRenderer.SetPosition( 0, new Vector3(555 ,555, 0) );
+                        lineRenderer.SetPosition( 1, new Vector3(555 ,555, 0) );
+                    }
+                }
 
             } else {
                 lineRenderer.SetPosition( 0, new Vector3(555 ,555, 0) );
@@ -135,8 +135,6 @@ public class Card : MonoBehaviour {
 
         //this can play some animation....whatever... for now i leave it empty.
 
-        //temp hack to remove the4 card from UI
-        transform.position = new Vector3(555,555,0);
         //remove the line renderer from the screen.
         lineRenderer.SetPosition( 0, new Vector3(555 ,555, 0) );
         lineRenderer.SetPosition( 1, new Vector3(555 ,555, 0) );

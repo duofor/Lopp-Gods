@@ -16,7 +16,9 @@ public class EnemyUI : MonoBehaviour {
     //health bar
     public Slider healthSlider;
     public Color healthColor;
-    
+    private GameObject healthBarPosition;
+
+
     //spawn positions
     Dictionary<GameObject, Vector3> spawnPositions;
 
@@ -28,7 +30,8 @@ public class EnemyUI : MonoBehaviour {
 
         healthColor = Color.red;
 
-        spriteRenderer.sortingOrder = 2; 
+        spriteRenderer.sortingOrder = 2;
+        healthBarPosition = GameObject.Find("EnemyPositionController"); 
     }
 
     void Update() {
@@ -36,7 +39,7 @@ public class EnemyUI : MonoBehaviour {
             spriteRenderer.enabled = false;
         }
         
-        if ( enemy != null )
+        if ( health > 0 )
             updateGUI();
 
         updateHealthBar();
@@ -81,10 +84,13 @@ public class EnemyUI : MonoBehaviour {
     }
 
     private void updateHealthBar() {
-        healthSlider.transform.position = transform.position - new Vector3 (0, spriteRenderer.bounds.size.y /1.6f , 0);
+        float offset = 0.5f;
+        healthSlider.transform.position = new Vector3 (transform.position.x, healthBarPosition.transform.position.y - offset, 0);
         if ( health > 0 && fullHealth > 0 ) {
             float value = health * 100 / fullHealth;
             healthSlider.value = value / 100;
+        } else {
+            healthSlider.value = 0;
         }
     }
 

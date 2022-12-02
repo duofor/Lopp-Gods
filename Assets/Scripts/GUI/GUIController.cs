@@ -8,12 +8,9 @@ public class GUIController : MonoBehaviour {
     private Canvas canvasObject; // Assign in inspector
     private Canvas battleCanvas;
 
+    [SerializeField] private RewardUI rewardUI;
+
     void Start() {
-        //camera init. temporarely using from inspector
-        // GameObject objectWithTheCamera = transform.Find("GUICamera").gameObject;
-        // guiCamera = objectWithTheCamera.GetComponent<Camera>();
-        
-        //canvas init
         GameObject objectWithTheCamera = transform.Find("Canvas").gameObject;
         canvasObject = objectWithTheCamera.GetComponent<Canvas>();
 
@@ -30,5 +27,9 @@ public class GUIController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space)) {
             canvasObject.enabled = !canvasObject.enabled;
         }
+    }
+
+    public RewardUI getRewardUI() {
+        return rewardUI;
     }
 }

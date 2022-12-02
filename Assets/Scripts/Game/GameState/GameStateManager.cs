@@ -8,6 +8,7 @@ public class GameStateManager : MonoBehaviour {
     public GameLoopState loopState = new GameLoopState();
     public GameBattleState battleState = new GameBattleState();
     public GameBattleStartState battleStartState = new GameBattleStartState();
+    public GameBattleRewardState battleRewardState = new GameBattleRewardState();
 
     public Canvas battleGUI; 
 

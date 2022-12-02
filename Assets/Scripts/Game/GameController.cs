@@ -13,15 +13,12 @@ public class GameController : GameStateManager {
     public MapGenerator mapGenerator;
     public GUIController guiController;
     public Deck deck; //this needs Editor Initialization for the beggining
-    public CardPosition cardPosition;
 
     //nu are ce cauta aici
     public List<Monster> monsterPool; // make a pool of monsters.
 
     void Awake() {
         instance = this;
-
-        
     }
 
     void Start() {

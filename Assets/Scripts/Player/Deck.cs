@@ -13,6 +13,8 @@ public class Deck : MonoBehaviour {
     public List<Card> usedDeckCards;
     public List<Card> cardsInHand;
 
+    public List<Card> availableCards;
+
     void Awake() {
         initDeck(); //this will cause problems.
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -35,7 +37,14 @@ public class Deck : MonoBehaviour {
     }
 
     public void addCardToDeck(Card card) {//this also notifies the GUI
-        this.deckCards.Add(card);
+        List<Card> temp = new List<Card>();
+
+        foreach(Card tempCard in deckCards) {
+            temp.Add(tempCard);
+        }
+        temp.Add(card);
+
+        deckCards = temp;
     }
 
     public List<Card> getDeck() {
@@ -71,7 +80,7 @@ public class Deck : MonoBehaviour {
         return cardsInHand;        
     }
 
-    public void addCardToHand(Card card) { //returns cardsInHand
+    public void addCardToHand(Card card) {
         cardsInHand.Add(card);  
         cardHandUpdateEvent(cardsInHand); //show in UI
     }
@@ -114,5 +123,9 @@ public class Deck : MonoBehaviour {
         }
         cardsInHand.Clear();
     }
+
+    public List<Card> getAllAvailableCards() {
+        return availableCards;
+    } 
 }
 

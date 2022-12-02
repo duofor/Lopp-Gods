@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameBattleStartState : GameBaseState {
-    
+
     private Canvas battleCanvas;
     
     private int cardStartAmount = 4;
@@ -21,6 +22,7 @@ public class GameBattleStartState : GameBaseState {
 
     void enableGUI() {
         battleCanvas.enabled = true;
+        GameObject.Find("BattleGround").GetComponent<Image>().enabled = true;
     }
 
 
