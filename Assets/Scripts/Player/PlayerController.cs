@@ -6,6 +6,9 @@ public class PlayerController : Looper {
     // Start is called before the first frame update
     Util util = new Util();
 
+    public int health;
+    int maxHealth;
+
     GameObject[] allMovePoints;
     List<GameObject> floors = new List<GameObject>();
     Tile nextFloorToMove = null;
@@ -21,6 +24,9 @@ public class PlayerController : Looper {
     bool shouldMove = true;
     
     public void init() {
+        health = 10;
+        maxHealth = 10;
+
         allMovePoints = GameObject.FindGameObjectsWithTag("MovePoint");
         rb = GetComponent<Rigidbody2D>();
         //init floors
@@ -104,5 +110,17 @@ public class PlayerController : Looper {
 
     public Tile getNextFloorToMove() {
         return nextFloorToMove;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void  setHealth(int h) {
+        health = h;
+    }
+
+    public int getMaxHealth() {
+        return health;
     }
 }

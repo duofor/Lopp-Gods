@@ -99,6 +99,13 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
+     <Compile Include="Assets\Scripts\Encounters\EncounterAction\BuffAction.cs" />
+     <Compile Include="Assets\Scripts\Encounters\EncounterAction\AttackAction.cs" />
+     <Compile Include="Assets\Scripts\Encounters\EncounterAction\PassAction.cs" />
+     <Compile Include="Assets\Scripts\Encounters\EncounterAction\Action.cs" />
+     <Compile Include="Assets\Scripts\Game\GameState\Battle\GamePlayerActionState.cs" />
+     <Compile Include="Assets\Scripts\Game\GameState\Battle\GameMonsterActionState.cs" />
+     <Compile Include="Assets\Scripts\Game\GameState\Battle\GameBattleTransitionState.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

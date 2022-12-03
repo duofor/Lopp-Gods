@@ -127,5 +127,16 @@ public class Deck : MonoBehaviour {
     public List<Card> getAllAvailableCards() {
         return availableCards;
     } 
+
+    public List<Card> getCardsInHand() {
+        return cardsInHand;
+    }
+
+    public void setCardsInHandState(bool state) {
+        foreach ( Card card in cardsInHand ) {
+            card.isUIOnly = state;
+        }
+    }
+
 }
 

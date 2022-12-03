@@ -10,6 +10,11 @@ public class GameStateManager : MonoBehaviour {
     public GameBattleStartState battleStartState = new GameBattleStartState();
     public GameBattleRewardState battleRewardState = new GameBattleRewardState();
 
+    public GamePlayerActionState playerActionState = new GamePlayerActionState();
+    public GameMonsterActionState monsterActionState = new GameMonsterActionState();
+    public GameBattleTransitionState gameBattleTransitionState = new GameBattleTransitionState();
+
+
     public Canvas battleGUI; 
 
     void Start() {

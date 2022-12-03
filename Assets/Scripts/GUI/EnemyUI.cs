@@ -18,11 +18,8 @@ public class EnemyUI : MonoBehaviour {
     public Color healthColor;
     private GameObject healthBarPosition;
 
-
     //spawn positions
     Dictionary<GameObject, Vector3> spawnPositions;
-
-
 
     void Awake() {
         spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
