@@ -41,9 +41,6 @@ public class CardPosition : MonoBehaviour {
         foreach (Card go in cards) {
             go.transform.position = start.position; //relocating my card to the Start Position
             go.transform.position += new Vector3 (( count * gapFromOneItemToTheNextOne), 0, 0); // Moving my card 1f to the right
-
-            Debug.Log(count + "  :::  " + go.transform.position + "  :::  " + go.transform.localPosition + "  :::  " + go.transform.parent);
-            
             count += 1f;
             mediumPositionX += go.transform.position.x;
         }

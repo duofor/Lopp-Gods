@@ -22,6 +22,7 @@ public class RewardChoice : MonoBehaviour {
 
         Debug.Log("INSTANTIATING AND ADDING CARD");
         Card cardObj = Instantiate(reward, cardTempPosition, transform.rotation);
+        cardObj.isUIOnly = false;
         GameController.instance.deck.addCardToDeck(cardObj);
         
         rewardUI.isChoiceMade = true;

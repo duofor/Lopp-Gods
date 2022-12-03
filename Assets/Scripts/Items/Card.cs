@@ -21,6 +21,9 @@ public class Card : MonoBehaviour {
     bool canTarget = false;
     bool canUseCard = false;
 
+    // cards comming from rewards have this enabled. We dont want to be able to interact with the card script while this in in the UI
+    public bool isUIOnly; 
+
     Vector3 startMousePos;
     Vector3 mousePos;
 
@@ -47,6 +50,9 @@ public class Card : MonoBehaviour {
     }
 
     void OnMouseDown() {
+        if (isUIOnly) 
+            return;
+
         canTarget = true;
     }
 

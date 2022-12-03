@@ -16,6 +16,7 @@ public class RewardUI : MonoBehaviour {
         List<Card> cards = GameController.instance.deck.getAllAvailableCards();
         foreach(Card card in cards) {
             Card obj = Instantiate(card, cardTempPosition, transform.rotation);
+            obj.isUIOnly = true;
             allAvailableCards.Add(obj);
         }
     }
@@ -65,7 +66,7 @@ public class RewardUI : MonoBehaviour {
         foreach (Transform child in transform) {
             if (child.transform.tag == "Button")
                 return;
-            child.GetComponent<RewardChoice>().setReward(choices[count]);
+            child.GetComponent<RewardChoice>().setReward(choices[count]); //set the reward
             count += 1;
         }
     }
