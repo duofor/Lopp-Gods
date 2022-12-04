@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : Looper {
-    // Start is called before the first frame update
     Util util = new Util();
+
+    [SerializeField] public PlayerUI playerUI;
 
     public int health;
     int maxHealth;

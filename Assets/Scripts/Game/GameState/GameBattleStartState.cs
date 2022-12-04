@@ -14,6 +14,9 @@ public class GameBattleStartState : GameBaseState {
         battleCanvas = gameStateManager.battleGUI;
         enableGUI(); //enable when start GUI
         GameController.instance.initStartBattleCards( cardStartAmount ); // init player with cards first
+
+        EnemyPositionController eps = GameController.instance.enemyPositionController;
+        eps.arrangeEnemies();
     }
     
     public override void updateState(GameStateManager gameStateManager) {

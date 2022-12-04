@@ -107,7 +107,51 @@ public class Monster : MonoBehaviour {
         actionQueue.Enqueue(action);
     }
 
-    public void doSomeDamage() { //does 1 dmaage to the player --- test method
-        GameController.instance.player.takeDamage(1);
+    public void attack(EnemyUI monsterUI, PlayerUI playerUI, Action action) { //does 1 dmaage to the player --- test method
+        StartCoroutine(attackAnimation(monsterUI, playerUI, action));
+    }
+
+    IEnumerator attackAnimation(EnemyUI monsterUI, PlayerUI playerUI, Action action) {
+        while ( action.canStartAction == false ) {
+            Debug.Log( "Waiting 1 more second" );
+            yield return new WaitForSeconds(0.5f);
+        }
+        
+        // we dont let next mob attack. Preventing all mobs attacking at the same time.
+        action.canStartAction = false;
+
+        float lerpDuration = 1.5f;
+        float timeElapsed = 0f;
+
+        Vector3 monsterUIInitialPosition = monsterUI.transform.position;
+
+        float sizeX = monsterUI.GetComponent<SpriteRenderer>().bounds.size.x;
+        Vector3 playerUIPosition = playerUI.transform.position - new Vector3 (-sizeX,0,0);
+
+        while (timeElapsed < lerpDuration) {
+            monsterUI.transform.position = Vector3.Lerp(monsterUI.transform.position, playerUIPosition, timeElapsed / lerpDuration);
+            timeElapsed += Time.deltaTime;
+
+            if ( monsterUI.transform.position == playerUIPosition ) {
+                GameController.instance.player.takeDamage(1); //do some dummy damage
+                break;
+            }
+                
+            yield return null;
+        }
+
+
+        timeElapsed = 0f;
+        while (timeElapsed < lerpDuration) {
+            monsterUI.transform.position = Vector3.Lerp(monsterUI.transform.position, monsterUIInitialPosition, timeElapsed / lerpDuration);
+            timeElapsed += Time.deltaTime;
+
+            if ( monsterUI.transform.position == monsterUIInitialPosition ) 
+                break;
+            yield return null;
+        }
+
+        //let the next mob start his attack now
+        action.canStartAction = true;
     }
 }

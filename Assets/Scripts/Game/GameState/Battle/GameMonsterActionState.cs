@@ -12,19 +12,18 @@ public class GameMonsterActionState : GameBaseState {
     
         //get monsters in scene
         monstersUIInScene = util.getMonstersInScene();
-    }
-    
-    public override void updateState(GameStateManager gameStateManager) {
-        //needs to implement some functionality that tells if player died or sth
         foreach ( EnemyUI monsterUI in monstersUIInScene ) {
             Monster monster = monsterUI.getEnemyObject();
             if (monster == null) {
                 continue;
             }
-            Debug.Log("playing: " + monster);
             Action action = monster.getCurrentAction();
-            action.playAction(monster);
+            action.playAction(monster, monsterUI, action);
         }
+    }
+    
+    public override void updateState(GameStateManager gameStateManager) {
+        //needs to implement some functionality that tells if player died or sth
         
         // go to tranzition again
         gameStateManager.switchState( gameStateManager.playerActionState );

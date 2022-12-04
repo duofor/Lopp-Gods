@@ -20,7 +20,7 @@ public class PlayerUI : MonoBehaviour {
         }
 
         if (spriteRenderer == null) {
-            spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
+            spriteRenderer = GetComponent<SpriteRenderer>();
 
         }
         

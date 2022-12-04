@@ -19,7 +19,7 @@ public class EnemyUI : MonoBehaviour {
     public Color healthColor;
     private GameObject healthBarPosition;
 
-    //action sprite
+    //action
     
     //spawn positions
     Dictionary<GameObject, Vector3> spawnPositions;
@@ -28,10 +28,11 @@ public class EnemyUI : MonoBehaviour {
     void Awake() {
         spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
         boxCollider = gameObject.AddComponent<BoxCollider2D>();
+        boxCollider.isTrigger = true;
 
         healthColor = Color.red;
 
-        spriteRenderer.sortingOrder = 2;
+        spriteRenderer.sortingOrder = 3;
         healthBarPosition = GameObject.Find("EnemyPositionController"); 
 
         foreach( Transform child in transform ) { // this will break if we have multiple childs of this transform
@@ -41,6 +42,7 @@ public class EnemyUI : MonoBehaviour {
     }
 
     void Update() {
+        
         if (enemy == null || spriteRenderer == null) {
             spriteRenderer.enabled = false;
         }
@@ -51,7 +53,6 @@ public class EnemyUI : MonoBehaviour {
         updateHealthBar();
         displayActionSprite();
     }
-
 
     void init() {
         spriteRenderer.sprite = enemy.GetComponent<SpriteRenderer>().sprite;

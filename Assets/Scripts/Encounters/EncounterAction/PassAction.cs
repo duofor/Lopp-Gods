@@ -8,7 +8,7 @@ public class PassAction : Action {
         actionSprite = sprite;
     }
 
-    public override void playAction(Monster monster) {
+    public override void playAction(Monster monster, EnemyUI monsterUI, Action action) {
         Debug.Log("Played pass action. : did nothing");
         return;
     }
