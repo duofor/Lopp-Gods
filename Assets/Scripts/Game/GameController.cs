@@ -13,6 +13,8 @@ public class GameController : GameStateManager {
     public MapGenerator mapGenerator;
     public GUIController guiController;
     public Deck deck; //this needs Editor Initialization for the beggining
+    public EnemyPositionController enemyPositionController;
+    public ActionManager actionManager;
 
     //nu are ce cauta aici
     public List<Monster> monsterPool; // make a pool of monsters.
@@ -59,8 +61,7 @@ public class GameController : GameStateManager {
 
     public void initStartBattleCards(int cardAmount) {
         // if card does not have Trigger checked on BoxCollider. it will collide with fcking player
-
-        List<Card> startingCards = deck.getRandomCardsFromDeck(cardAmount);
+        deck.getRandomCardsFromDeck(cardAmount);
 
 
         // Debug.Log("I should receive a CARD for killing you");

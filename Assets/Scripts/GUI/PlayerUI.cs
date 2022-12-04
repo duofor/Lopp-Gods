@@ -13,7 +13,7 @@ public class PlayerUI : MonoBehaviour {
 
     GameObject healthBarPosition;
     public int maxHealth;
-
+    
     void Awake() {
         if (boxCollider == null ) {
             boxCollider = gameObject.AddComponent<BoxCollider2D>();
@@ -25,10 +25,10 @@ public class PlayerUI : MonoBehaviour {
         }
         
         transform.localScale = new Vector3(650, 650, 0);
-        
         spriteRenderer.sprite = player.GetComponent<SpriteRenderer>().sprite;
         boxCollider.size = spriteRenderer.size;
         healthBarPosition = GameObject.Find("EnemyPositionController"); 
+        PlayerController.playerUIHitEffect += shake;
     }
 
     void Update() {
@@ -57,5 +57,33 @@ public class PlayerUI : MonoBehaviour {
         } else {
             healthSlider.value = 0;
         }
+    }
+
+    IEnumerator doSomeSmallShake() {
+        Debug.Log("ouch");
+        Vector3 initialHitPosition = transform.position;
+
+        float timePassed = 0;
+        bool flip = false;
+        while (timePassed < 0.3f) {
+            // Shake
+            if (flip) {
+                flip = !flip; 
+                transform.position += new Vector3(0, initialHitPosition.y / 80, 0);
+                transform.position += new Vector3(initialHitPosition.x / 80, 0, 0);
+            } else {
+                flip = !flip; 
+                transform.position -= new Vector3(0, initialHitPosition.y / 80, 0);
+                transform.position -= new Vector3(initialHitPosition.x / 80, 0, 0);
+            }
+            timePassed += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = initialHitPosition;
+    }
+
+    void shake() {
+        StartCoroutine(doSomeSmallShake());
     }
 }

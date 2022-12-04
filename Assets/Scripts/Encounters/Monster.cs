@@ -4,19 +4,18 @@ using UnityEngine.Events;
 using UnityEngine;
 
 public class Monster : MonoBehaviour {
-    //basic attributes
-    BoxCollider2D boxCollider;
 
     private int health = 2;
     public bool canDestroy;
-    Vector3 initialPosition;
+
+    Action currentAction;
+    //this need to stay in the Type of monster class
+    Queue<Action> actionQueue = new Queue<Action>();
 
     void Awake() {
-        initialPosition = transform.position;
-        boxCollider = GetComponent<BoxCollider2D>();
         Card.cardUseEvent += attacked;
-
         canDestroy = false;
+        addSomeActions();
     }
 
     void Update() {
@@ -50,12 +49,12 @@ public class Monster : MonoBehaviour {
             // Shake
             if (flip) {
                 flip = !flip; 
-                hit.transform.position += new Vector3(0, initialPosition.y / 80, 0);
-                hit.transform.position += new Vector3(initialPosition.x / 80, 0, 0);
+                hit.transform.position += new Vector3(0, initialHitPosition.y / 80, 0);
+                hit.transform.position += new Vector3(initialHitPosition.x / 80, 0, 0);
             } else {
                 flip = !flip; 
-                hit.transform.position -= new Vector3(0, initialPosition.y / 80, 0);
-                hit.transform.position -= new Vector3(initialPosition.x / 80, 0, 0);
+                hit.transform.position -= new Vector3(0, initialHitPosition.y / 80, 0);
+                hit.transform.position -= new Vector3(initialHitPosition.x / 80, 0, 0);
             }
             timePassed += Time.deltaTime;
             yield return null;
@@ -77,5 +76,38 @@ public class Monster : MonoBehaviour {
 
     public int getHealth() {
         return health;
+    }
+
+    public void addSomeActions() { // for testing
+        ActionManager am = GameController.instance.actionManager;
+
+        actionQueue.Enqueue(am.attackAction);
+        actionQueue.Enqueue(am.passAction);
+        actionQueue.Enqueue(am.attackAction);
+        actionQueue.Enqueue(am.passAction);
+        actionQueue.Enqueue(am.attackAction);
+        actionQueue.Enqueue(am.passAction);
+        actionQueue.Enqueue(am.attackAction);
+        actionQueue.Enqueue(am.passAction);
+    }
+
+    public Action getCurrentAction() {
+        Action action = actionQueue.Dequeue();
+
+        return action;
+    }
+
+    public Action peekNextAction() {
+        Action action = actionQueue.Peek();
+
+        return action;
+    }
+
+    public void addAction(Action action) {
+        actionQueue.Enqueue(action);
+    }
+
+    public void doSomeDamage() { //does 1 dmaage to the player --- test method
+        GameController.instance.player.takeDamage(1);
     }
 }

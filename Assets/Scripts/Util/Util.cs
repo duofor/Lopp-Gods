@@ -88,4 +88,17 @@ public class Util {
         return null;
     } 
 
+    public List<EnemyUI> getMonstersInScene() {
+        List<GameObject> enemyGameObjects = getAllObjectsWithTag(enemyUITag);
+        List<EnemyUI> monstersUIInScene = new List<EnemyUI>();
+        foreach ( GameObject go in enemyGameObjects ) {
+            Monster monster = go.GetComponent<EnemyUI>().getEnemyObject();
+            if (monster == null) {
+                continue;
+            }
+            monstersUIInScene.Add( go.GetComponent<EnemyUI>() );
+        }
+
+        return monstersUIInScene;
+    }
 }

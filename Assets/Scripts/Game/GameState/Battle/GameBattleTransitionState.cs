@@ -20,7 +20,6 @@ public class GameBattleTransitionState : GameBaseState {
         if ( getTotalMonstersHealth() <= 0 ) {
             gameStateManager.switchState( gameStateManager.battleRewardState ); //go to reward state
         } else {
-            
             // continue to monster action state
             gameStateManager.switchState( gameStateManager.monsterActionState ); //go to reward state
 

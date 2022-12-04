@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Action : MonoBehaviour {
+public abstract class Action {
 
-    public void playAction() {
-        return;
-    }
+    public Sprite actionSprite {get; set;}
+
+    public abstract void playAction(Monster monster);
 }

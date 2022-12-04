@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class EnemyUI : MonoBehaviour {
 
     [SerializeField] private Monster enemy;
+    [SerializeField] private SpriteRenderer actionSprite;
 
     public int health; 
     private int fullHealth; 
@@ -18,8 +19,11 @@ public class EnemyUI : MonoBehaviour {
     public Color healthColor;
     private GameObject healthBarPosition;
 
+    //action sprite
+    
     //spawn positions
     Dictionary<GameObject, Vector3> spawnPositions;
+
 
     void Awake() {
         spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
@@ -29,6 +33,11 @@ public class EnemyUI : MonoBehaviour {
 
         spriteRenderer.sortingOrder = 2;
         healthBarPosition = GameObject.Find("EnemyPositionController"); 
+
+        foreach( Transform child in transform ) { // this will break if we have multiple childs of this transform
+            actionSprite = child.GetComponent<SpriteRenderer>();
+        }
+
     }
 
     void Update() {
@@ -40,6 +49,7 @@ public class EnemyUI : MonoBehaviour {
             updateGUI();
 
         updateHealthBar();
+        displayActionSprite();
     }
 
 
@@ -95,4 +105,14 @@ public class EnemyUI : MonoBehaviour {
         return enemy;
     }
 
+    public void displayActionSprite() {
+        if ( enemy != null ) {
+            actionSprite.sprite = enemy.peekNextAction().actionSprite;
+            actionSprite.transform.position = new Vector3 (transform.position.x, transform.position.y + 1f, 0);
+        } else {
+            if ( actionSprite.sprite != null ) {
+                actionSprite.sprite = null;
+            }
+        }
+    }
 }

@@ -9,6 +9,9 @@ public class PlayerController : Looper {
     public int health;
     int maxHealth;
 
+    public delegate void PlayerUIHitEffect();
+    public static event PlayerUIHitEffect playerUIHitEffect;
+
     GameObject[] allMovePoints;
     List<GameObject> floors = new List<GameObject>();
     Tile nextFloorToMove = null;
@@ -22,7 +25,7 @@ public class PlayerController : Looper {
     // [SerializeField] float movementSpeed = 0.006f;
     int currentFloor = 1;
     bool shouldMove = true;
-    
+
     public void init() {
         health = 10;
         maxHealth = 10;
@@ -122,5 +125,10 @@ public class PlayerController : Looper {
 
     public int getMaxHealth() {
         return health;
+    }
+
+    public void takeDamage(int damage) {
+        health -= damage;
+        playerUIHitEffect();
     }
 }
