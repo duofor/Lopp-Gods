@@ -51,7 +51,7 @@ public class EnemyUI : MonoBehaviour {
             updateGUI();
 
         updateHealthBar();
-        displayActionSprite();
+        displayActionSprite(); // needs to be moved after player enters fight state
     }
 
     void init() {

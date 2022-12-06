@@ -15,6 +15,7 @@ public class GameController : GameStateManager {
     public Deck deck; //this needs Editor Initialization for the beggining
     public EnemyPositionController enemyPositionController;
     public ActionManager actionManager;
+    public MonsterController monsterController;
 
     //nu are ce cauta aici
     public List<Monster> monsterPool; // make a pool of monsters.

@@ -5,6 +5,9 @@ using UnityEngine;
 public class GameMonsterActionState : GameBaseState {
     Util util = new Util();
 
+    public delegate void StartMonsterActions();
+    public static event StartMonsterActions startMonsterActions;
+
     List<EnemyUI> monstersUIInScene = new List<EnemyUI>();
 
     public override void enterState(GameStateManager gameStateManager) {
@@ -20,6 +23,8 @@ public class GameMonsterActionState : GameBaseState {
             Action action = monster.getCurrentAction();
             action.playAction(monster, monsterUI, action);
         }
+
+        startMonsterActions(); // triggers start attack for all mosnters on screen
     }
     
     public override void updateState(GameStateManager gameStateManager) {

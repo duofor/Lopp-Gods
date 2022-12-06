@@ -6,6 +6,9 @@ public class GameBattleTransitionState : GameBaseState {
     Util util = new Util(); //for gods sake make a singleton
 
     private List<GameObject> enemyObjs;
+    private bool isPlayerTurn;
+
+    int doOnce = 0; 
 
     public override void enterState(GameStateManager gameStateManager) {
         Debug.Log("Entered GameBattleTransitionState");
@@ -13,20 +16,16 @@ public class GameBattleTransitionState : GameBaseState {
 
         //disable cards in hand interactibity
         GameController.instance.deck.setCardsInHandState(false);
+        isPlayerTurn = false;
+
     }
 
-    
     public override void updateState(GameStateManager gameStateManager) {
         if ( getTotalMonstersHealth() <= 0 ) {
             gameStateManager.switchState( gameStateManager.battleRewardState ); //go to reward state
         } else {
-            // continue to monster action state
             gameStateManager.switchState( gameStateManager.monsterActionState ); //go to reward state
-
-
         }
-
-
     }
 
     private int getTotalMonstersHealth() {
@@ -39,9 +38,5 @@ public class GameBattleTransitionState : GameBaseState {
         }
         return mobHp;
     }
-
-
-
-
 }
 

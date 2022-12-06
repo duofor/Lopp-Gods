@@ -26,8 +26,8 @@ public class GamePlayerActionState : GameBaseState {
     
     public override void updateState(GameStateManager gameStateManager) {
         if ( cardsUsedThisTurn >= 2 ) {
-            gameStateManager.switchState(gameStateManager.gameBattleTransitionState);
             Card.cardUseEvent -= usedCard; 
+            gameStateManager.switchState(gameStateManager.gameBattleTransitionState);
         }
     }
 
