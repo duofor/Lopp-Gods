@@ -8,13 +8,13 @@ public class AttackAction : Action {
         actionSprite = sprite;
     }
 
-    public override void playAction(Monster monster, EnemyUI enemyUI, Action action) {
+    public override void registerAction(Monster monster, EnemyUI enemyUI, Action action) {
         Debug.Log(monster.transform.name + "Plays an attack action");
         
         PlayerUI playerUI = GameController.instance.player.playerUI;
         
+        GameController.instance.monsterController.enqueueAction(enemyUI, playerUI, action);
 
-        monster.attack(enemyUI, playerUI, action); // does 1 dmg to the player. test method
         //replenish the queue with the same action
         monster.addAction(this);
     }

@@ -10,7 +10,16 @@ public class GameMonsterActionState : GameBaseState {
 
     List<EnemyUI> monstersUIInScene = new List<EnemyUI>();
 
+    int doOnce = 0;
+    bool canSwitchState = false;
+
     public override void enterState(GameStateManager gameStateManager) {
+        if (doOnce == 0 ) {
+            MonsterController.endMonsterTurnEvent += monsterTurnEnded; //evant registering monster end turn
+            doOnce = 1;
+        }
+        canSwitchState = false;
+        
         Debug.Log("Entered GameMonsterActionState");
     
         //get monsters in scene
@@ -21,7 +30,7 @@ public class GameMonsterActionState : GameBaseState {
                 continue;
             }
             Action action = monster.getCurrentAction();
-            action.playAction(monster, monsterUI, action);
+            action.registerAction(monster, monsterUI, action);
         }
 
         startMonsterActions(); // triggers start attack for all mosnters on screen
@@ -29,10 +38,16 @@ public class GameMonsterActionState : GameBaseState {
     
     public override void updateState(GameStateManager gameStateManager) {
         //needs to implement some functionality that tells if player died or sth
-        
-        // go to tranzition again
-        gameStateManager.switchState( gameStateManager.playerActionState );
-            
+
+        //an event is fired when monster turn shall end        
+        if (canSwitchState == true) {
+            gameStateManager.switchState( gameStateManager.playerActionState );
+        }
+    }
+
+
+    void monsterTurnEnded() {
+        canSwitchState = true;
     }
 
 }

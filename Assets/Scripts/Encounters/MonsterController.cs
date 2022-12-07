@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class MonsterController : MonoBehaviour {
     
-    int oncePerRun = 1;    
+    public delegate void EndMonsterTurnEvent();
+    public static event EndMonsterTurnEvent endMonsterTurnEvent;
+
+    int oncePerRun = 1;
+    float monsterTransitionTimeSeconds = 2f;    
     
-    private List<EnemyUI> monsterUIs;
-    // private Queue<IEnumerator> attackAnimationQueue = new Queue<IEnumerator>();
     private List<IEnumerator> attackAnimationQueue = new List<IEnumerator>();
 
     void Start() {
         GameMonsterActionState.startMonsterActions += playActions;
-    }
-
-    public void setEnemyUIs(List<EnemyUI> monsters) {
-        monsterUIs = monsters;
     }
 
     public void enqueueAction(EnemyUI monsterUI, PlayerUI playerUI, Action action) {
@@ -89,7 +87,21 @@ public class MonsterController : MonoBehaviour {
             }
 
             yield return StartCoroutine(nextAction); // start next action in queue.
+        } else {
+            StartCoroutine(endTurnAfterSeconds(monsterTransitionTimeSeconds));
         }
+    }
+
+    IEnumerator endTurnAfterSeconds(float secondsToWait) {
+        Debug.Log($"ending monster turn after {secondsToWait} seconds");
+        float timeElapsed = 0f;
+        while (timeElapsed < secondsToWait) { // pause between attacks
+            timeElapsed += Time.deltaTime;
+
+            yield return null;
+        }
+
+        endMonsterTurnEvent();
     }
 
 

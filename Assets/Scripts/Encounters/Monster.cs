@@ -106,10 +106,4 @@ public class Monster : MonoBehaviour {
     public void addAction(Action action) {
         actionQueue.Enqueue(action);
     }
-
-    public void attack(EnemyUI monsterUI, PlayerUI playerUI, Action action) { //does 1 dmaage to the player --- test method
-        GameController.instance.monsterController.enqueueAction(monsterUI, playerUI, action);
-    }
-
-
 }
