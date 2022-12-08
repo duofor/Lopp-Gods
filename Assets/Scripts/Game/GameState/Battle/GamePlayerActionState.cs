@@ -20,7 +20,9 @@ public class GamePlayerActionState : GameBaseState {
 
         List<EnemyUI> monstersInScene = util.getMonstersInScene();
         foreach( EnemyUI enemyUI in monstersInScene ) {
-            enemyUI.displayActionSprite();
+            if ( enemyUI.getEnemyObject() != null ) {
+                enemyUI.displayActionSprite(); // display the next action
+            }
         }
     }
     

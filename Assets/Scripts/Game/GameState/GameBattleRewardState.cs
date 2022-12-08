@@ -11,23 +11,20 @@ public class GameBattleRewardState : GameBaseState {
         rewardUI = GameController.instance.guiController.getRewardUI();
         
         //display selection UI
-        rewardUI.enableUI();
-        rewardUI.init();
-
+        GameController.instance.menuController.PushPage(rewardUI);
     }
 
     public override void updateState(GameStateManager gameStateManager) {
         
         if ( rewardUI.isChoiceMade == true ) {
-            GameController.instance.player.finishBattle();
-            
-            gameStateManager.battleGUI.enabled = false; //disable gui when battle ends
             GameController.instance.deck.moveCardsFromHandToDeck();
             GameController.instance.deck.moveCardsFromUsedDeckToPrimaryDeck();
 
             GameController.instance.player.isInBattle = false;
-            GameController.instance.player.getNextFloorToMove().endEncounter(); // getting current floor and ending the encounter
-            rewardUI.disableUI();
+            GameController.instance.player.getCurrentFloor().endEncounter(); // getting current floor and ending the encounter
+            
+            rewardUI.removeChoiceCardsFromScreen();
+            GameController.instance.menuController.PopPage();
 
             gameStateManager.switchState( gameStateManager.loopState );
         } else {

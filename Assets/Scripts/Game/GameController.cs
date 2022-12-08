@@ -16,6 +16,7 @@ public class GameController : GameStateManager {
     public EnemyPositionController enemyPositionController;
     public ActionManager actionManager;
     public MonsterController monsterController;
+    public MenuController menuController;
 
     //nu are ce cauta aici
     public List<Monster> monsterPool; // make a pool of monsters.

@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MonsterController : MonoBehaviour {
-    
+    Util util = new Util();
+
+
     public delegate void EndMonsterTurnEvent();
     public static event EndMonsterTurnEvent endMonsterTurnEvent;
 
     int oncePerRun = 1;
-    float monsterTransitionTimeSeconds = 2f;    
     
     private List<IEnumerator> attackAnimationQueue = new List<IEnumerator>();
 
@@ -88,7 +89,7 @@ public class MonsterController : MonoBehaviour {
 
             yield return StartCoroutine(nextAction); // start next action in queue.
         } else {
-            StartCoroutine(endTurnAfterSeconds(monsterTransitionTimeSeconds));
+            StartCoroutine(endTurnAfterSeconds(util.monsterTransitionTimeSeconds));
         }
     }
 

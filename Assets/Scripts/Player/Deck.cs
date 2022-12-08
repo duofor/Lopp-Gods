@@ -138,5 +138,9 @@ public class Deck : MonoBehaviour {
         }
     }
 
+    public List<Card> getUsedCards() {
+        return usedDeckCards;
+    }
+
 }
 

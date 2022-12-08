@@ -5,9 +5,13 @@ using UnityEngine.UI;
 
 public class EnemyUI : MonoBehaviour {
 
+    public delegate void EnemyTakesDamageEvent(Transform transform);
+    public static event EnemyTakesDamageEvent enemyTakesDamageEvent;
+
     [SerializeField] private Monster enemy;
     [SerializeField] private SpriteRenderer actionSprite;
 
+    public int previousHealth; // used for dmg Testing 
     public int health; 
     private int fullHealth; 
 
@@ -51,17 +55,21 @@ public class EnemyUI : MonoBehaviour {
             updateGUI();
 
         updateHealthBar();
-        displayActionSprite(); // needs to be moved after player enters fight state
+        
+        if (enemy == null) {
+            displayActionSprite(); //disable sprite when no enemy
+        }
     }
 
     void init() {
         spriteRenderer.sprite = enemy.GetComponent<SpriteRenderer>().sprite;
         transform.localScale = new Vector3(650, 650, 0);
     
-        boxCollider.size = spriteRenderer.size;
-        health = enemy.GetComponent<Monster>().getHealth();
-
         spriteRenderer.enabled = true;
+        boxCollider.size = spriteRenderer.size;
+        
+        health = enemy.GetComponent<Monster>().getHealth();
+        previousHealth = health; //we add 1 so tat we trigger first update health bar -> and show it in the ui
     } 
 
     public Monster getEnemyObject() {
@@ -95,8 +103,14 @@ public class EnemyUI : MonoBehaviour {
         float offset = 0.5f;
         healthSlider.transform.position = new Vector3 (transform.position.x, healthBarPosition.transform.position.y - offset, 0);
         if ( health > 0 && fullHealth > 0 ) {
+            if (previousHealth != health) {
+                enemyTakesDamageEvent(transform); // display dmg numbers
+                previousHealth = health;
+            }
+            
             float value = health * 100 / fullHealth;
             healthSlider.value = value / 100;
+            
         } else {
             healthSlider.value = 0;
         }

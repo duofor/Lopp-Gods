@@ -7,6 +7,8 @@ public class Util {
     public readonly string enemyUITag = "EnemyUI";
     public readonly string enemyFloorPosition = "EnemyFloorPosition";
 
+    public float monsterTransitionTimeSeconds = 0.1f;
+
     public GameObject findRandomTargetByTag(string tag) {
         GameObject[] otherObjects = GameObject.FindGameObjectsWithTag(tag);
 
@@ -100,5 +102,11 @@ public class Util {
         }
 
         return monstersUIInScene;
+    }
+
+    public Page getBattleGroundPage() {
+        Page page = GameObject.Find("BattleGround").GetComponent<Page>();
+        
+        return page;
     }
 }

@@ -36,7 +36,6 @@ public class PlayerController : Looper {
         //init floors
         foreach (GameObject gameObject in allMovePoints) {
             GameObject parent = gameObject.transform.parent.gameObject;
-            // Debug.Log(parent.name);
             floors.Add(parent);
         }
     }
@@ -94,17 +93,11 @@ public class PlayerController : Looper {
         transform.position = spawnPoint.transform.position;
     }
 
-    public void finishBattle() {
-        isInBattle = false;
-    }
-
     private void beginBattle(List<Monster> enemies) {
         //begins battle....
         foreach (Monster enemy in enemies ) {
             //set the enemy obj in one of the available UIs
             EnemyUI enemyUIScript = util.getNextEnemyUIRef();
-
-            Debug.Log(enemyUIScript.name);
 
             enemyUIScript.setEnemyObj(enemy); 
         }
@@ -112,7 +105,7 @@ public class PlayerController : Looper {
         isInBattle = true;
     }
 
-    public Tile getNextFloorToMove() {
+    public Tile getCurrentFloor() {
         return nextFloorToMove;
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class GameBattleStartState : GameBaseState {
-
+    Util util = new Util();
     private Canvas battleCanvas;
     
     private int cardStartAmount = 4;
@@ -25,7 +25,8 @@ public class GameBattleStartState : GameBaseState {
 
     void enableGUI() {
         battleCanvas.enabled = true;
-        GameObject.Find("BattleGround").GetComponent<Image>().enabled = true;
+        Page page = util.getBattleGroundPage();
+        GameController.instance.menuController.PushPage(page);
     }
 
 

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RewardUI : MonoBehaviour {
+public class RewardUI : Page {
 
     public bool isChoiceMade = false;
     private int rewardsAmount = 3;
-    Vector3 cardTempPosition = new Vector3( 600, 600, 0); 
+    Vector3 cardTempPosition = new Vector3( 9999, 9999, 0); 
 
 
     public List<Card> allAvailableCards;
@@ -21,30 +21,9 @@ public class RewardUI : MonoBehaviour {
         }
     }
 
-    public void disableUI() {
-        GetComponent<Image>().enabled = false;
-
+    public void removeChoiceCardsFromScreen() {
         foreach (Card card in allAvailableCards) {
             card.transform.position = cardTempPosition;
-            card.GetComponent<SpriteRenderer>().sortingOrder = 0;
-        }
-
-        foreach (Transform child in transform) {
-            Button button = child.GetComponent<Button>();
-            if (button) {
-                button.gameObject.SetActive(false);
-            }
-        }
-    }
-
-    public void enableUI() {
-        GetComponent<Image>().enabled = true;
-
-        foreach (Transform child in transform) {
-            Button button = child.GetComponent<Button>();
-            if (button) {
-                button.gameObject.SetActive(true);
-            }
         }
     }
 
@@ -66,7 +45,9 @@ public class RewardUI : MonoBehaviour {
         foreach (Transform child in transform) {
             if (child.transform.tag == "Button")
                 return;
-            child.GetComponent<RewardChoice>().setReward(choices[count]); //set the reward
+            RewardChoice rewardChoice = child.GetComponent<RewardChoice>();
+            rewardChoice.setReward(choices[count]); //set the reward
+            rewardChoice.setRewardPosition(); // this can be later changed into setting the sprite position
             count += 1;
         }
     }
