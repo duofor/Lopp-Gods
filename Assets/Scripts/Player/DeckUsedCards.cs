@@ -14,4 +14,6 @@ public class DeckUsedCards : MonoBehaviour {
         deckUsedCards = GameController.instance.deck.getUsedCards();
     }
 
+    
+
 }

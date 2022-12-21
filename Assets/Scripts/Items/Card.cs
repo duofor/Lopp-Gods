@@ -30,6 +30,8 @@ public class Card : MonoBehaviour {
     Ray ray;
     RaycastHit hit;
 
+    Vector3 usedCardsLocation;
+
     void Start() {
         spriteRenderer = GetComponent<SpriteRenderer>();
         initialLayer = spriteRenderer.sortingOrder;
@@ -39,6 +41,9 @@ public class Card : MonoBehaviour {
         lineRenderer = GetComponent<LineRenderer>();
         lineRendererResetter = lineRenderer;
         //outline
+
+        //getting the position for the used card deck
+        usedCardsLocation = GameObject.Find(util.usedCardsLocation).transform.position;
     }
 
     void OnMouseOver() {
@@ -99,7 +104,7 @@ public class Card : MonoBehaviour {
                         canUseCard = true;
                         canTarget = false;
 
-                        transform.position = new Vector3(555,555,0); // use card hack. We only remove the card from teh screen when we use it.
+                        StartCoroutine(cardUsedAnimation()); // icter animation
                     } else {
                         lineRenderer.SetPosition( 0, new Vector3(555 ,555, 0) );
                         lineRenderer.SetPosition( 1, new Vector3(555 ,555, 0) );
@@ -137,12 +142,36 @@ public class Card : MonoBehaviour {
         spriteRenderer.color = initialColor;
     }
 
-    public void useCard() {
-
-        //this can play some animation....whatever... for now i leave it empty.
-
+    private void useCard() {
         //remove the line renderer from the screen.
         lineRenderer.SetPosition( 0, new Vector3(555 ,555, 0) );
         lineRenderer.SetPosition( 1, new Vector3(555 ,555, 0) );
+    }
+
+    IEnumerator cardUsedAnimation() { // its just a dummy shit
+        //We could get the used cards location and do a lerp animation with a zoom on it.
+        //after that hsit is done we can either :
+            //set the position of the card to a temp position
+            //figure out some other interaction where the card is not displayed on screen anymore
+        Vector3 initialCardPos = transform.position; 
+        float timeElapsed = 0f;
+        float lerpDuration = 1f;
+
+        while ( timeElapsed < lerpDuration ) {
+            transform.position = Vector3.Lerp(initialCardPos, usedCardsLocation, timeElapsed / lerpDuration);
+            
+            //WIP
+            // transform.localScale = Vector3.Lerp(Vector3.one, Vector3.zero, timeElapsed);
+            
+            timeElapsed += Time.deltaTime;
+            if ( usedCardsLocation == transform.position ) {
+                yield break;
+            }
+            yield return null;
+        }
+
+        transform.position = new Vector3(555,555,0); // use card hack. We only remove the card from teh screen when we use it.
+        // transform.localScale = Vector3.one;
+
     }
 }
