@@ -12,6 +12,7 @@ public class GameBattleRewardState : GameBaseState {
         
         //display selection UI
         GameController.instance.menuController.PushPage(rewardUI);
+        rewardUI.isChoiceMade = false; //enabling player choice
     }
 
     public override void updateState(GameStateManager gameStateManager) {

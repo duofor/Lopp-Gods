@@ -2,18 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RewardChoice : Page {
+public class RewardChoice : MonoBehaviour {
 
     private Card reward;
     private RewardUI rewardUI;
 
     Vector3 cardTempPosition = new Vector3( 600, 600, 0); 
 
-    SpriteRenderer spriteRenderer;
-
     void Awake() {
         rewardUI = transform.parent.GetComponent<RewardUI>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void select() {
@@ -22,7 +19,7 @@ public class RewardChoice : Page {
 
         Debug.Log("INSTANTIATING AND ADDING CARD");
         Card cardObj = Instantiate(reward, cardTempPosition, transform.rotation);
-        cardObj.isUIOnly = false;
+        cardObj.isUIOnly = true;
         GameController.instance.deck.addCardToDeck(cardObj);
         
         rewardUI.isChoiceMade = true;

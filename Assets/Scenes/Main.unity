@@ -3437,26 +3437,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eee442848172a84a93bea73a1fc0ebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AnimationSpeed: 1
-  ExitOnNewPagePush: 0
-  EntryClip: {fileID: 0}
-  ExitClip: {fileID: 0}
-  EntryMode: 1
-  EntryDirection: 4
-  ExitMode: 1
-  ExitDirection: 4
-  PrePushAction:
-    m_PersistentCalls:
-      m_Calls: []
-  PostPushAction:
-    m_PersistentCalls:
-      m_Calls: []
-  PrePopAction:
-    m_PersistentCalls:
-      m_Calls: []
-  PostPopAction:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!225 &578371348
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3838,7 +3818,7 @@ MonoBehaviour:
   ExitClip: {fileID: 0}
   EntryMode: 1
   EntryDirection: 4
-  ExitMode: 2
+  ExitMode: 1
   ExitDirection: 0
   PrePushAction:
     m_PersistentCalls:
@@ -4186,26 +4166,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eee442848172a84a93bea73a1fc0ebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AnimationSpeed: 1
-  ExitOnNewPagePush: 0
-  EntryClip: {fileID: 0}
-  ExitClip: {fileID: 0}
-  EntryMode: 1
-  EntryDirection: 4
-  ExitMode: 1
-  ExitDirection: 4
-  PrePushAction:
-    m_PersistentCalls:
-      m_Calls: []
-  PostPushAction:
-    m_PersistentCalls:
-      m_Calls: []
-  PrePopAction:
-    m_PersistentCalls:
-      m_Calls: []
-  PostPopAction:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!225 &652343423
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -7413,26 +7373,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eee442848172a84a93bea73a1fc0ebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AnimationSpeed: 1
-  ExitOnNewPagePush: 0
-  EntryClip: {fileID: 0}
-  ExitClip: {fileID: 0}
-  EntryMode: 1
-  EntryDirection: 4
-  ExitMode: 1
-  ExitDirection: 4
-  PrePushAction:
-    m_PersistentCalls:
-      m_Calls: []
-  PostPushAction:
-    m_PersistentCalls:
-      m_Calls: []
-  PrePopAction:
-    m_PersistentCalls:
-      m_Calls: []
-  PostPopAction:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!225 &1147358435
 CanvasGroup:
   m_ObjectHideFlags: 0

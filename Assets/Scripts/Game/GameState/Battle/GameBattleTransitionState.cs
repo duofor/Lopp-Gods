@@ -12,7 +12,7 @@ public class GameBattleTransitionState : GameBaseState {
         enemyObjs = util.getAllObjectsWithTag(util.enemyUITag);
 
         //disable cards in hand interactibity
-        GameController.instance.deck.setCardsInHandState(false);
+        GameController.instance.deck.setCardsInHandState(true);
 
     }
 

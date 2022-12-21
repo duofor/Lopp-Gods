@@ -15,7 +15,7 @@ public class GamePlayerActionState : GameBaseState {
         
         int cardAmount = 2;
         GameController.instance.deck.getRandomCardsFromDeck(cardAmount); //grab some cards
-        GameController.instance.deck.setCardsInHandState(true);//enable cards in hand interactibity
+        GameController.instance.deck.setCardsInHandState(false);//enable cards in hand interactibity
         
 
         List<EnemyUI> monstersInScene = util.getMonstersInScene();

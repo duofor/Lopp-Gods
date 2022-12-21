@@ -50,7 +50,7 @@ public class Card : MonoBehaviour {
     }
 
     void OnMouseDown() {
-        if (!isUIOnly) 
+        if (isUIOnly) 
             return;
 
         canTarget = true;
