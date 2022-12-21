@@ -51,7 +51,7 @@ public class PlayerUI : MonoBehaviour {
             healthSlider.transform.position = new Vector3 (9999, 9999, 0);
         } else {
             spriteRenderer.enabled = true;
-            spriteRenderer.sortingOrder = 2;
+            spriteRenderer.sortingOrder = 3;
             updateHealthBar();
         }
     }

@@ -34,23 +34,23 @@ public class DamageManager : MonoBehaviour {
         Vector3 destPosition = new Vector3(damageTextObj.transform.position.x, yDest, 0);
 
         float timeElapsed = 0f;
-        float duration = 0.4f;
+        float duration = 0.5f;
         while ( timeElapsed < duration ) {
             damageTextObj.transform.position = Vector3.Lerp(
                 damageTextObj.transform.position,
                 destPosition,
-                timeElapsed / duration
+                timeElapsed 
             );
 
             timeElapsed += Time.deltaTime; 
             if ( damageTextObj.transform.position == destPosition ) {
-                // Destroy(damageTextObj.gameObject);
+                Destroy(damageTextObj.gameObject);
                 yield break;
             }
             yield return null;
         }
-
         Destroy(damageTextObj.gameObject);
+
     }
 
 }
