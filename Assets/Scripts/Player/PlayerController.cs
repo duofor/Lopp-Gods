@@ -28,6 +28,8 @@ public class PlayerController : Looper {
     int currentFloor = 1;
     bool shouldMove = true;
 
+    public bool canEndTurn = false;
+
     public void init() {
         health = 10;
         maxHealth = 10;

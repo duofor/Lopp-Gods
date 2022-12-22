@@ -14,7 +14,6 @@ public class CardPosition : MonoBehaviour {
 
     void Start() {
         gapFromOneItemToTheNextOne = 1f;  /// space between cards
-        Deck.cardHandUpdateEvent += updateUI; 
     }
 
 

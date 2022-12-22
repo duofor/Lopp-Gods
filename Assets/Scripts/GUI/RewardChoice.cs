@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RewardChoice : MonoBehaviour {
 
-    private Card reward;
     private RewardUI rewardUI;
 
     Vector3 cardTempPosition = new Vector3( 600, 600, 0); 
@@ -18,19 +17,15 @@ public class RewardChoice : MonoBehaviour {
             return;
 
         Debug.Log("INSTANTIATING AND ADDING CARD");
-        Card cardObj = Instantiate(reward, cardTempPosition, transform.rotation);
-        cardObj.isUIOnly = true;
-        GameController.instance.deck.addCardToDeck(cardObj);
-        
         rewardUI.isChoiceMade = true;
     }
 
-    public void setReward(Card card) {
-        reward = card;
+    public void setReward() {
+        // something
     }
 
     public void setRewardPosition() {
-        reward.transform.position = transform.position;
+        // reward.transform.position = transform.position;
     }
 
 }

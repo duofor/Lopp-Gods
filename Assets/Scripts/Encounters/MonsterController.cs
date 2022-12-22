@@ -5,7 +5,6 @@ using UnityEngine;
 public class MonsterController : MonoBehaviour {
     Util util = new Util();
 
-
     public delegate void EndMonsterTurnEvent();
     public static event EndMonsterTurnEvent endMonsterTurnEvent;
 

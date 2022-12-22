@@ -5,19 +5,9 @@ using UnityEngine;
 public class GamePlayerActionState : GameBaseState {
     Util util = new Util();
 
-    int cardsUsedThisTurn; //for testing
-
-
     public override void enterState(GameStateManager gameStateManager) {
         Debug.Log("Entered GamePlayerActionState");
-        cardsUsedThisTurn = 0;
-        Card.cardUseEvent += usedCard; 
         
-        int cardAmount = 2;
-        GameController.instance.deck.getRandomCardsFromDeck(cardAmount); //grab some cards
-        GameController.instance.deck.setCardsInHandState(false);//enable cards in hand interactibity
-        
-
         List<EnemyUI> monstersInScene = util.getMonstersInScene();
         foreach( EnemyUI enemyUI in monstersInScene ) {
             if ( enemyUI.getEnemyObject() != null ) {
@@ -27,15 +17,11 @@ public class GamePlayerActionState : GameBaseState {
     }
     
     public override void updateState(GameStateManager gameStateManager) {
-        if ( cardsUsedThisTurn >= 2 ) {
-            Card.cardUseEvent -= usedCard; 
+        if ( GameController.instance.player.canEndTurn == true ) {
+            Debug.Log("test");
             gameStateManager.switchState(gameStateManager.gameBattleTransitionState);
+            GameController.instance.player.canEndTurn = false;
         }
     }
-
-    void usedCard(Card card, RaycastHit2D hit, int damage) {
-        cardsUsedThisTurn += 1;
-    }
-
 }
 

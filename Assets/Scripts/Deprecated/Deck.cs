@@ -18,7 +18,6 @@ public class Deck : MonoBehaviour {
     void Awake() {
         initDeck(); //this will cause problems.
         spriteRenderer = GetComponent<SpriteRenderer>();
-        Card.cardUseEvent += removeCardFromHand; 
     }
 
     void Update() {
@@ -132,11 +131,6 @@ public class Deck : MonoBehaviour {
         return cardsInHand;
     }
 
-    public void setCardsInHandState(bool state) {
-        foreach ( Card card in cardsInHand ) {
-            card.isUIOnly = state;
-        }
-    }
 
     public List<Card> getUsedCards() {
         return usedDeckCards;

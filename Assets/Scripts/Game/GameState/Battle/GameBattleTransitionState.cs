@@ -11,9 +11,6 @@ public class GameBattleTransitionState : GameBaseState {
         Debug.Log("Entered GameBattleTransitionState");
         enemyObjs = util.getAllObjectsWithTag(util.enemyUITag);
 
-        //disable cards in hand interactibity
-        GameController.instance.deck.setCardsInHandState(true);
-
     }
 
     public override void updateState(GameStateManager gameStateManager) {

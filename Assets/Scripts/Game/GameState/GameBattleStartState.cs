@@ -13,8 +13,7 @@ public class GameBattleStartState : GameBaseState {
         Debug.Log("Entered Battle START state");
         battleCanvas = gameStateManager.battleGUI;
         enableGUI(); //enable when start GUI
-        GameController.instance.initStartBattleCards( cardStartAmount ); // init player with cards first
-
+        
         EnemyPositionController eps = GameController.instance.enemyPositionController;
         eps.arrangeEnemies();
     }

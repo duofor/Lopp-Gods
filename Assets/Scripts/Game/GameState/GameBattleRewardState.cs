@@ -18,9 +18,6 @@ public class GameBattleRewardState : GameBaseState {
     public override void updateState(GameStateManager gameStateManager) {
         
         if ( rewardUI.isChoiceMade == true ) {
-            GameController.instance.deck.moveCardsFromHandToDeck();
-            GameController.instance.deck.moveCardsFromUsedDeckToPrimaryDeck();
-
             GameController.instance.player.isInBattle = false;
             GameController.instance.player.getCurrentFloor().endEncounter(); // getting current floor and ending the encounter
             

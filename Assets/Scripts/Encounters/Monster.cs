@@ -13,7 +13,6 @@ public class Monster : MonoBehaviour {
     Queue<Action> actionQueue = new Queue<Action>();
 
     void Awake() {
-        Card.cardUseEvent += attacked;
         canDestroy = false;
         addSomeActions();
     }
@@ -25,23 +24,12 @@ public class Monster : MonoBehaviour {
     }
 
     void OnDestroy() {
-        Card.cardUseEvent -= attacked;
+
     }
 
-    void attacked(Card card, RaycastHit2D hit, int damage) {
-        //stupid logic to bypass event being called everywhere
-        EnemyUI script = hit.transform.gameObject.GetComponent<EnemyUI>();
-        if ( script.getEnemyObject().gameObject != transform.gameObject ){
-            return;
-        }
-        
-        takeDamage(damage);
-        StartCoroutine( doSomeSmallShakeAndDestroyObj( hit ) ); // this also destroyes
-    }
-
-    IEnumerator doSomeSmallShakeAndDestroyObj( RaycastHit2D hit ) {
+    IEnumerator doSomeSmallShakeAndDestroyObj( ) {
         Debug.Log("yeahh");
-        Vector3 initialHitPosition = hit.transform.position;
+        Vector3 initialHitPosition = transform.position;
 
         float timePassed = 0;
         bool flip = false;
@@ -49,25 +37,26 @@ public class Monster : MonoBehaviour {
             // Shake
             if (flip) {
                 flip = !flip; 
-                hit.transform.position += new Vector3(0, initialHitPosition.y / 80, 0);
-                hit.transform.position += new Vector3(initialHitPosition.x / 80, 0, 0);
+                transform.position += new Vector3(0, initialHitPosition.y / 80, 0);
+                transform.position += new Vector3(initialHitPosition.x / 80, 0, 0);
             } else {
                 flip = !flip; 
-                hit.transform.position -= new Vector3(0, initialHitPosition.y / 80, 0);
-                hit.transform.position -= new Vector3(initialHitPosition.x / 80, 0, 0);
+                transform.position -= new Vector3(0, initialHitPosition.y / 80, 0);
+                transform.position -= new Vector3(initialHitPosition.x / 80, 0, 0);
             }
             timePassed += Time.deltaTime;
             yield return null;
         }
 
-        hit.transform.position = initialHitPosition;
+        transform.position = initialHitPosition;
         if (health <= 0) {
             canDestroy = true;
         }
     }
 
-    void takeDamage(int damage) {
+    public void takeDamage(int damage) {
         this.health -= damage;
+        StartCoroutine(doSomeSmallShakeAndDestroyObj());
     }
 
     public void setHealth( int healthAmount ) {
