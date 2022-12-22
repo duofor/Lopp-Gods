@@ -9,6 +9,7 @@ public class PlayerController : Looper {
 
     public int health;
     int maxHealth;
+    public int loopNumber = 0;
 
     public delegate void PlayerUIHitEffect();
     public static event PlayerUIHitEffect playerUIHitEffect;
@@ -40,6 +41,7 @@ public class PlayerController : Looper {
         }
     }
 
+    //this method needs to stay in a separate class. Perhaps Looper
     public void loop() {
 
         if ( shouldMove ) {
@@ -47,15 +49,21 @@ public class PlayerController : Looper {
         }
 
         if ( transform.position == targetPosition) {
-            List<Monster> encounter = nextFloorToMove.GetComponent<Tile>().getEncounter();
+            Tile currentTile = nextFloorToMove.GetComponent<Tile>();
+            
+            if ( currentTile.transform.name == util.spawnPoint ) {
+                loopNumber += 1;
+            }
+
+            List<Monster> encounter = currentTile.getEncounter();
             if ( encounter.Count > 0 ) {
                 beginBattle(encounter);
             } else {
                 shouldMove = true;
             }
         } else {
+            //move towards next tile.
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, movementSpeed );
-            // rb.MovePosition(targetPosition * movementSpeed );
         }
 
     }
@@ -76,7 +84,7 @@ public class PlayerController : Looper {
         string objectName = "floor" + currentFloor + "(Clone)";
 
         if (currentFloor == 0 ) {
-            objectName = "Spawn Point(Clone)";
+            objectName = "SpawnPoint";
         }
 
         foreach (GameObject gameObject in floors) {

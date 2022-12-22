@@ -7,6 +7,7 @@ public class Util {
     public readonly string enemyUITag = "EnemyUI";
     public readonly string enemyFloorPosition = "EnemyFloorPosition";
     public readonly string usedCardsLocation = "UsedCardsLocation";
+    public readonly string spawnPoint = "SpawnPoint";
 
     public float monsterTransitionTimeSeconds = 0.1f;
 
