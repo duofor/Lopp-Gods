@@ -11,6 +11,10 @@ public class EnemyUI : MonoBehaviour {
 
     [SerializeField] private Monster enemy;
     [SerializeField] private SpriteRenderer actionSprite;
+    
+    // Outline material
+    private Material outlineMaterial;
+  
 
     public int previousHealth; // used for dmg Testing 
     public int health; 
@@ -18,6 +22,7 @@ public class EnemyUI : MonoBehaviour {
 
     SpriteRenderer spriteRenderer;
     BoxCollider2D boxCollider;
+    Material initialMaterial;
 
     //health bar
     public Slider healthSlider;
@@ -31,7 +36,7 @@ public class EnemyUI : MonoBehaviour {
 
 
     void Awake() {
-        spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         boxCollider = gameObject.AddComponent<BoxCollider2D>();
         boxCollider.isTrigger = true;
 
@@ -44,6 +49,7 @@ public class EnemyUI : MonoBehaviour {
             actionSprite = child.GetComponent<SpriteRenderer>();
         }
 
+        outlineMaterial = Resources.Load<Material>("Material/Outline_Material");
     }
 
     void Update() {
@@ -59,6 +65,18 @@ public class EnemyUI : MonoBehaviour {
         
         if (enemy == null) {
             displayActionSprite(); //disable sprite when no enemy
+        }
+    }
+
+    void OnMouseOver() {
+        if ( enemy != null ) {
+            spriteRenderer.material = outlineMaterial;
+        }
+    }
+
+    void OnMouseExit() {
+        if ( initialMaterial != null ) {
+            spriteRenderer.material = initialMaterial;
         }
     }
 
@@ -98,6 +116,7 @@ public class EnemyUI : MonoBehaviour {
         healthSlider.transform.localScale = new Vector3(spriteRenderer.size.x + spriteRenderer.size.x * 2.4f, spriteRenderer.size.y + spriteRenderer.size.y * 2.4f , 0);
         healthSlider.value = health;
         fullHealth = health;
+        initialMaterial = enemy.GetComponent<SpriteRenderer>().material;
     }
 
     private void updateHealthBar() {
@@ -105,6 +124,7 @@ public class EnemyUI : MonoBehaviour {
         healthSlider.transform.position = new Vector3 (transform.position.x, healthBarPosition.transform.position.y - offset, 0);
         if ( health > 0 && fullHealth > 0 ) {
             if (previousHealth != health) {
+                StartCoroutine(doSomeSmallShake());
                 enemyTakesDamageEvent(transform); // display dmg numbers
                 previousHealth = health;
             }
@@ -113,6 +133,9 @@ public class EnemyUI : MonoBehaviour {
             healthSlider.value = value / 100;
             
         } else {
+            if ( enemy != null ) {
+                enemy.canDestroy = true;
+            }
             healthSlider.value = 0;
         }
     }
@@ -130,5 +153,29 @@ public class EnemyUI : MonoBehaviour {
                 actionSprite.sprite = null;
             }
         }
+    }
+
+    IEnumerator doSomeSmallShake( ) {
+        Debug.Log("yeahh");
+        Vector3 initialHitPosition = transform.position;
+
+        float timePassed = 0;
+        bool flip = false;
+        while (timePassed < 0.3f) {
+            // Shake
+            if (flip) {
+                flip = !flip; 
+                transform.position += new Vector3(0, initialHitPosition.y / 80, 0);
+                transform.position += new Vector3(initialHitPosition.x / 80, 0, 0);
+            } else {
+                flip = !flip; 
+                transform.position -= new Vector3(0, initialHitPosition.y / 80, 0);
+                transform.position -= new Vector3(initialHitPosition.x / 80, 0, 0);
+            }
+            timePassed += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = initialHitPosition;
     }
 }

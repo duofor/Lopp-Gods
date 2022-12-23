@@ -6,13 +6,19 @@ using UnityEngine.UI;
 public class PlayerSkillSlot : MonoBehaviour {
     Util util = new Util();
 
-    private SpriteRenderer spriteRenderer;
     private Image image;
     private Skill skill; 
+    private Material outlineMaterial;
+    private SpriteRenderer spriteRenderer;
+    
+    private Material initialMaterial;
 
     void Awake() {
         spriteRenderer = GetComponent<SpriteRenderer>();
         image = GetComponent<Image>();
+        
+        outlineMaterial = Resources.Load<Material>("Material/Outline_Material");
+        initialMaterial = spriteRenderer.material;
     }
 
     void Update() {
@@ -27,6 +33,19 @@ public class PlayerSkillSlot : MonoBehaviour {
         Debug.Log("Selected");
         StartCoroutine(skill.loadSkill());
     }
+
+    void OnMouseOver() {
+        if ( transform.gameObject != null ) {
+            image.material = outlineMaterial;
+        }
+    }
+
+    void OnMouseExit() {
+        if ( initialMaterial != null ) {
+            image.material = initialMaterial;
+        }
+    }
+
 
     public void setSkillSprite ( Sprite sprite ) {
         image.sprite = sprite;

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5431362474008342139}
   - component: {fileID: -2838428138722069299}
   m_Layer: 0
-  m_Name: TestSkill_1
+  m_Name: TestSkill_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 7061726731460736310}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9.6258, y: -2.4344, z: 0}
-  m_LocalScale: {x: 0.6215, y: 0.3875, z: 0}
+  m_LocalScale: {x: 0.6215, y: 0.3875, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1038573935, guid: 27a32fd3692f9d0488e40fba015fb21d, type: 3}
+  m_Sprite: {fileID: -142199531, guid: 27a32fd3692f9d0488e40fba015fb21d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -16,6 +16,10 @@ public class PlayerUI : MonoBehaviour {
     SpriteRenderer spriteRenderer;
     BoxCollider2D boxCollider;
 
+    // Outline material
+    Material initialMaterial;
+    private Material outlineMaterial;
+
     GameObject healthBarPosition;
     public int maxHealth;
     
@@ -40,6 +44,12 @@ public class PlayerUI : MonoBehaviour {
         healthBarPosition = GameObject.Find("EnemyPositionController"); 
         PlayerController.playerUIHitEffect += shake;
         doOnce = 0;
+
+        outlineMaterial = Resources.Load<Material>("Material/Outline_Material");
+        
+        if ( initialMaterial == null ) {
+            initialMaterial = GetComponent<SpriteRenderer>().material;
+        }
     }
 
     void Update() {
@@ -57,6 +67,19 @@ public class PlayerUI : MonoBehaviour {
             updateHealthBar();
         }
     }
+
+    void OnMouseOver() {
+        if ( spriteRenderer != null ) {
+            spriteRenderer.material = outlineMaterial;
+        }
+    }
+
+    void OnMouseExit() {
+        if ( initialMaterial != null ) {
+            spriteRenderer.material = initialMaterial;
+        }
+    }
+
 
     private void updateHealthBar() {
         float offset = 0.5f;

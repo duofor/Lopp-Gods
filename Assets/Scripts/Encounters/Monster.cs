@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour {
 
-    private int health = 2;
+    private int health = 10;
     public bool canDestroy;
 
     Action currentAction;
@@ -23,40 +23,8 @@ public class Monster : MonoBehaviour {
         }
     }
 
-    void OnDestroy() {
-
-    }
-
-    IEnumerator doSomeSmallShakeAndDestroyObj( ) {
-        Debug.Log("yeahh");
-        Vector3 initialHitPosition = transform.position;
-
-        float timePassed = 0;
-        bool flip = false;
-        while (timePassed < 0.3f) {
-            // Shake
-            if (flip) {
-                flip = !flip; 
-                transform.position += new Vector3(0, initialHitPosition.y / 80, 0);
-                transform.position += new Vector3(initialHitPosition.x / 80, 0, 0);
-            } else {
-                flip = !flip; 
-                transform.position -= new Vector3(0, initialHitPosition.y / 80, 0);
-                transform.position -= new Vector3(initialHitPosition.x / 80, 0, 0);
-            }
-            timePassed += Time.deltaTime;
-            yield return null;
-        }
-
-        transform.position = initialHitPosition;
-        if (health <= 0) {
-            canDestroy = true;
-        }
-    }
-
     public void takeDamage(int damage) {
         this.health -= damage;
-        StartCoroutine(doSomeSmallShakeAndDestroyObj());
     }
 
     public void setHealth( int healthAmount ) {

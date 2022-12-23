@@ -98,4 +98,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroy: 0
-  actionSprite: {fileID: -2285114424382770006, guid: 6139b099b5cbcfe4c836ec5f4c1d1e11, type: 3}
