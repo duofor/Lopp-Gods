@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class EnemyUI : MonoBehaviour {
+    Util util = new Util();
 
     public delegate void EnemyTakesDamageEvent(Transform transform);
     public static event EnemyTakesDamageEvent enemyTakesDamageEvent;
@@ -63,7 +64,7 @@ public class EnemyUI : MonoBehaviour {
 
     void init() {
         spriteRenderer.sprite = enemy.GetComponent<SpriteRenderer>().sprite;
-        transform.localScale = new Vector3(650, 650, 0);
+        transform.localScale = util.defaultGUIActorsScale;
     
         spriteRenderer.enabled = true;
         boxCollider.size = spriteRenderer.size;

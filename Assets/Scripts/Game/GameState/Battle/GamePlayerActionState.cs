@@ -17,11 +17,21 @@ public class GamePlayerActionState : GameBaseState {
     }
     
     public override void updateState(GameStateManager gameStateManager) {
-        if ( GameController.instance.player.canEndTurn == true ) {
-            Debug.Log("test");
+        if ( GameController.instance.player.canEndTurn == true || monstersDefeated() ) {
             gameStateManager.switchState(gameStateManager.gameBattleTransitionState);
             GameController.instance.player.canEndTurn = false;
+        } 
+    }
+
+    private bool monstersDefeated() {
+        List<EnemyUI> monsters = util.getMonstersInScene();
+        foreach( EnemyUI enemy in monsters ) {
+            if ( enemy.getHealth() > 0 ) {
+                return false;
+            }
         }
+
+        return true;
     }
 }
 

@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerUI : MonoBehaviour {
+    Util util = new Util();
+
 
     public delegate void PlayerTakesDamageEvent(Transform transform);
     public static event PlayerTakesDamageEvent playerTakesDamageEvent;
@@ -32,7 +34,7 @@ public class PlayerUI : MonoBehaviour {
 
         }
         
-        transform.localScale = new Vector3(650, 650, 0);
+        transform.localScale = util.defaultGUIActorsScale;
         spriteRenderer.sprite = player.GetComponent<SpriteRenderer>().sprite;
         boxCollider.size = spriteRenderer.size;
         healthBarPosition = GameObject.Find("EnemyPositionController"); 

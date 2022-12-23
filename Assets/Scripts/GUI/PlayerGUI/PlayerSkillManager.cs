@@ -23,7 +23,7 @@ public class PlayerSkillManager : MonoBehaviour {
         foreach ( Skill skill in availableSkills ) {
             Sprite skillSprite = skill.GetComponent<SpriteRenderer>().sprite;
             playerSkillSlots[index].setSkillSprite(skillSprite);
-            playerSkillSlots[index].setOrderInLayer(3);
+            // playerSkillSlots[index].setOrderInLayer(3);
             playerSkillSlots[index].setSkill(skill);
             index += 1;
         }

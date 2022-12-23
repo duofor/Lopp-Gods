@@ -8,6 +8,7 @@ public class Util {
     public readonly string enemyFloorPosition = "EnemyFloorPosition";
     public readonly string usedCardsLocation = "UsedCardsLocation";
     public readonly string spawnPoint = "SpawnPoint";
+    public readonly Vector3 defaultGUIActorsScale = new Vector3(160, 160, 0);
 
     public float monsterTransitionTimeSeconds = 0.1f;
 
