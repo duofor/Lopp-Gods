@@ -12,6 +12,7 @@ public class PlayerUI : MonoBehaviour {
 
     [SerializeField] private GameObject player;
     [SerializeField] private Slider healthSlider;
+    [SerializeField] private Slider manaSlider;
     
     SpriteRenderer spriteRenderer;
     BoxCollider2D boxCollider;
@@ -22,6 +23,7 @@ public class PlayerUI : MonoBehaviour {
 
     GameObject healthBarPosition;
     public int maxHealth;
+    public int maxMana;
     
     int previousHealth;
     int health;
@@ -57,6 +59,10 @@ public class PlayerUI : MonoBehaviour {
            maxHealth = GameController.instance.player.getMaxHealth();
         }
 
+        if ( maxMana == 0 ) {
+           maxMana = GameController.instance.player.getMaxMana();
+        }
+
         bool fightState = GameController.instance.player.isInBattle;
         if ( fightState == false ) {
             spriteRenderer.enabled = false;
@@ -65,6 +71,7 @@ public class PlayerUI : MonoBehaviour {
             spriteRenderer.enabled = true;
             spriteRenderer.sortingOrder = 3;
             updateHealthBar();
+            updateManaBar();
         }
     }
 
@@ -101,6 +108,18 @@ public class PlayerUI : MonoBehaviour {
             
         } else {
             healthSlider.value = 0;
+        }
+    }
+
+    private void updateManaBar() {
+        int mana = GameController.instance.player.getMana();
+
+        if ( mana > 0 ) {
+            float value = mana * 100 / maxMana;
+            manaSlider.value = value / 100;
+            
+        } else {
+            manaSlider.value = 0;
         }
     }
 

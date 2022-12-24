@@ -12,7 +12,6 @@ public class AttackAction : Action {
         Debug.Log(monster.transform.name + "Plays an attack action");
         
         PlayerUI playerUI = GameController.instance.player.playerUI;
-        
         GameController.instance.monsterController.enqueueAction(enemyUI, playerUI, action);
 
         //replenish the queue with the same action

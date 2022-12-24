@@ -12,7 +12,7 @@ public class Skill : MonoBehaviour {
 
     //test data
     public int damage = 1;
-    public int cooldown = 1;
+    public int skillManaCost = 1;
 
     void Awake() {
         isSkillSelected = false;
@@ -28,6 +28,13 @@ public class Skill : MonoBehaviour {
     }
 
     public void fireAtTarget() {
+        int playerMana = GameController.instance.player.getMana();
+        if ( playerMana < skillManaCost ) {
+            Debug.Log("Insuficient mana to use skill");
+            isSkillSelected = false;
+            return;
+        }
+
         Debug.Log("shits released");
 
         RaycastHit2D hit = util.getTargetAtMouse();
@@ -38,7 +45,12 @@ public class Skill : MonoBehaviour {
             } else {
                 Monster monster = hit.transform.GetComponent<EnemyUI>().getEnemyObject();
                 if ( monster != null ) {
-                    // Debug.Log("Targeted: " + hit.transform.name.ToString());
+                    //we are hitting an enemy
+                    // reduce mana
+                    playerMana -= skillManaCost;
+                    GameController.instance.player.setMana(playerMana);
+
+                    // send the damage
                     monster.takeDamage(damage);
                 }
             }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour {
 
-    private int health = 10;
+    private int health = 2;
     public bool canDestroy;
 
     Action currentAction;

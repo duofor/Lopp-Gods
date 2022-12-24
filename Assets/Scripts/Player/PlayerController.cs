@@ -8,6 +8,7 @@ public class PlayerController : Looper {
     [SerializeField] public PlayerUI playerUI;
 
     public int health;
+    public int mana;
     int maxHealth;
     public int loopNumber = 0;
 
@@ -32,6 +33,7 @@ public class PlayerController : Looper {
 
     public void init() {
         health = 10;
+        mana = 10;
         maxHealth = 10;
 
         allMovePoints = GameObject.FindGameObjectsWithTag("MovePoint");
@@ -127,8 +129,20 @@ public class PlayerController : Looper {
         health = h;
     }
 
+    public int getMana() {
+        return mana;
+    }
+
+    public void setMana(int m) {
+        mana = m;
+    }
+
     public int getMaxHealth() {
         return health;
+    }
+
+    public int getMaxMana() {
+        return mana;
     }
 
     public void takeDamage(int damage) {

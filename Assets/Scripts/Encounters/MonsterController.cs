@@ -17,10 +17,15 @@ public class MonsterController : MonoBehaviour {
     }
 
     public void enqueueAction(EnemyUI monsterUI, PlayerUI playerUI, Action action) {
-        attackAnimationQueue.Add(attackAnimation(monsterUI, playerUI, action));
+        // this shit needs to be refactored.
+        if ( action.GetType() == typeof(AttackAction)) {
+            attackAnimationQueue.Add(attackAnimation(monsterUI, playerUI, action));
+        } else {
+            attackAnimationQueue.Add(endTurnAfterSeconds(0.5f));
+        }
     }
 
-    private void playActions() {
+    private void playActions() { 
         if ( attackAnimationQueue.Count <= 0 )
             return;
         oncePerRun = 0;

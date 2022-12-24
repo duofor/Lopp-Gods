@@ -8,8 +8,15 @@ public class PassAction : Action {
         actionSprite = sprite;
     }
 
-    public override void registerAction(Monster monster, EnemyUI monsterUI, Action action) {
+    public override void registerAction(Monster monster, EnemyUI enemyUI, Action action) {
         Debug.Log("Played pass action. : did nothing");
+
+        PlayerUI playerUI = GameController.instance.player.playerUI;
+        GameController.instance.monsterController.enqueueAction(enemyUI, playerUI, action);
+        
+        //replenish queue with the same action.
+        monster.addAction(this);
+
         return;
     }
 
