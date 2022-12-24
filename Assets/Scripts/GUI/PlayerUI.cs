@@ -28,8 +28,9 @@ public class PlayerUI : MonoBehaviour {
     int health;
     
     // weapon
-    [SerializeField] private Weapon weapon;
+    [SerializeField] private GameObject weaponPoint;
     private Vector3 weaponPosition;
+    private Weapon weapon;
 
     int doOnce = 0;
     
@@ -56,12 +57,7 @@ public class PlayerUI : MonoBehaviour {
             initialMaterial = GetComponent<SpriteRenderer>().material;
         }
 
-        foreach ( Transform trans in transform ) {
-            if (trans.name == "Weapon") {
-                weaponPosition = trans.position;
-                break;
-            }
-        }
+        weaponPosition = weaponPoint.transform.position;
     }
 
     void Update() {
@@ -144,30 +140,21 @@ public class PlayerUI : MonoBehaviour {
         StartCoroutine(doSomeSmallShake());
     }
 
-    public void setWeapon(Weapon wep) {
+    public void setPlayerWeapon(Weapon wep) {
+        if ( weapon != null ) {
+            Destroy(weapon.gameObject);
+        }
 
-        wep = Instantiate(wep);
-        // wep.transform.position = weaponPosition; // Copies the Position 
-        wep.transform.rotation = weapon.transform.rotation; // Copies the Rotation
-        wep.transform.localScale = weapon.transform.localScale; // Copies the Scale
-        Destroy(weapon.gameObject);
-        weapon = wep;
-        weapon.transform.position = transform.position;
-        weapon.GetComponent<SpriteRenderer>().sortingOrder = 3; 
-        weapon.transform.position = new Vector3( transform.position.x + 0.32f, transform.position.y + 0.16f, 0 );
-        weapon.transform.parent = transform;
-        weapon.transform.localScale = weapon.transform.localScale * 2; 
-
-        List<Skill> weaponSkills = weapon.getWeaponSkills();
+        Weapon weaponToSet = Instantiate(wep, util.defaultVector3, transform.rotation);
+        weaponToSet.GetComponent<SpriteRenderer>().sortingOrder = 3; 
+        
+        //set parent and just set pos to 000
+        weaponToSet.transform.parent = weaponPoint.transform;
+        weaponToSet.transform.localPosition = util.defaultVector3; 
+        
+        List<Skill> weaponSkills = weaponToSet.getWeaponSkills();
         GameController.instance.playerSkillManager.addSkills(weaponSkills);
 
-
-        // weapon = wep;
-        // weapon.transform.position = weaponPosition;
-        // weapon.transform.localScale = new Vector3(160, 160, 0);
-    }
-
-    public Weapon getWeapon() {
-        return weapon;
+        weapon = weaponToSet; // dunno why we still do this tho
     }
 }

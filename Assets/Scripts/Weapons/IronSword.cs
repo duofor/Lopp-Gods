@@ -5,9 +5,7 @@ using UnityEngine;
 public class IronSword : Weapon {
 
     void Start() {
-        List<Skill> skills = new List<Skill>();
-        skills.Add( new SwordBasicAttackSkill() );
-        skills.Add( new SwordSwingAttackSkill() );
-        weaponSkills = skills;
+        // List<Skill> skills = new List<Skill>();
+        // weaponSkills = skills;
     }
 }

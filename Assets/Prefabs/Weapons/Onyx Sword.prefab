@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -2090666109475237021}
   - component: {fileID: 7780102195784373309}
   m_Layer: 0
-  m_Name: Iron Sword
+  m_Name: Onyx Sword
   m_TagString: WeaponItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: -9037411367760340442, guid: 6139b099b5cbcfe4c836ec5f4c1d1e11, type: 3}
+  m_Sprite: {fileID: 620111541035404702, guid: 6139b099b5cbcfe4c836ec5f4c1d1e11, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,8 +100,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponSkills:
-  - {fileID: -7646754773929205003, guid: eccf5ea1593265e4b9df91fd6097a987, type: 3}
   - {fileID: -4178867146332619467, guid: 20f792133053f654da429c7aaf289778, type: 3}
+  - {fileID: -4178867146332619467, guid: 20f792133053f654da429c7aaf289778, type: 3}
+  - {fileID: -4178867146332619467, guid: 20f792133053f654da429c7aaf289778, type: 3}
+  - {fileID: -7646754773929205003, guid: eccf5ea1593265e4b9df91fd6097a987, type: 3}
 --- !u!61 &-2090666109475237021
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -115,7 +117,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.04144741}
+  m_Offset: {x: 0, y: -0.020418316}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -126,7 +128,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1010101, y: 0.21003447}
+  m_Size: {x: 0.1010101, y: 0.25209266}
   m_EdgeRadius: 0
 --- !u!50 &7780102195784373309
 Rigidbody2D:

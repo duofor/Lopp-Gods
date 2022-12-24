@@ -10,6 +10,7 @@ public class PlayerSkillSlot : MonoBehaviour {
     private Skill skill; 
     private Material outlineMaterial;
     private SpriteRenderer spriteRenderer;
+    private Sprite defaultSlotSprite;
     
     private Material initialMaterial;
 
@@ -17,6 +18,8 @@ public class PlayerSkillSlot : MonoBehaviour {
         spriteRenderer = GetComponent<SpriteRenderer>();
         image = GetComponent<Image>();
         
+        defaultSlotSprite = image.sprite;
+
         outlineMaterial = Resources.Load<Material>("Material/Outline_Material");
         initialMaterial = spriteRenderer.material;
     }
@@ -49,13 +52,15 @@ public class PlayerSkillSlot : MonoBehaviour {
 
     public void setSkillSprite ( Sprite sprite ) {
         image.sprite = sprite;
-    }   
-
-    public void setOrderInLayer( int number ) {
-        // image = number;
     }
+    public void clearSkillSprite () {
+        image.sprite = defaultSlotSprite;
+    }   
 
     public void setSkill(Skill skillToSet) {
         skill = skillToSet;
+    }
+    public void clearSkill() {
+        skill = null;
     }
 }

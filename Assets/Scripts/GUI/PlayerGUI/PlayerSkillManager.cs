@@ -6,11 +6,16 @@ public class PlayerSkillManager : MonoBehaviour {
 
 
     //will keep this public for testing purposes
-    public List<Skill> availableSkills; 
     public List<PlayerSkillSlot> playerSkillSlots; 
 
     public void addSkills( List<Skill> skills ) {
         int index = 0;
+
+        foreach ( PlayerSkillSlot pss in playerSkillSlots ) {
+            pss.clearSkill();
+            pss.clearSkillSprite();
+        }
+
         foreach ( Skill skill in skills ) {
             Sprite skillSprite = skill.GetComponent<SpriteRenderer>().sprite;
             playerSkillSlots[index].setSkillSprite(skillSprite);

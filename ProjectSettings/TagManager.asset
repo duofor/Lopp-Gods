@@ -19,6 +19,8 @@ TagManager:
   - EnemyUI
   - EnemyFloorPosition
   - Button
+  - WeaponSlot
+  - WeaponItem
   layers:
   - Default
   - TransparentFX

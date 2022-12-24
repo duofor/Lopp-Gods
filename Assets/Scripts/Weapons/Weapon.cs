@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour {
+public class Weapon : Draggable {
 
     public delegate void PlayerUIRegisterWeapon(Weapon weapon);
     public static event PlayerUIRegisterWeapon playerUIRegisterWeapon;
