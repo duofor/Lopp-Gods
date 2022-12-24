@@ -22,7 +22,7 @@ public class PlayerSkillSlot : MonoBehaviour {
     }
 
     void Update() {
-        if (skill.isSkillSelected == true) {
+        if (skill != null && skill.isSkillSelected == true) {
             if (Input.GetMouseButtonUp(0)) {
                 skill.fireAtTarget();
             }

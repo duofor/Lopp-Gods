@@ -6330,7 +6330,7 @@ MonoBehaviour:
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
+    m_ColorMultiplier: 2.31
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
@@ -10940,9 +10940,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   availableSkills:
-  - {fileID: -2838428138722069299, guid: 21000057a6ed6c643b0b460b2761f160, type: 3}
+  - {fileID: 0}
   - {fileID: 5831222209380731616, guid: 10268e87d838da44aad0e6c157749b34, type: 3}
-  - {fileID: -2838428138722069299, guid: c8c81cee998e9d34caf16ade332d9f8a, type: 3}
+  - {fileID: 0}
   - {fileID: 5831222209380731616, guid: 0cf0555a0ddcb7949816d78d80a28a16, type: 3}
   playerSkillSlots:
   - {fileID: 964009914}
@@ -13509,6 +13509,7 @@ MonoBehaviour:
   monsterController: {fileID: 408964599}
   menuController: {fileID: 406052761}
   playerSkillManager: {fileID: 1413879067}
+  playerUI: {fileID: 110083223}
   monsterPool:
   - {fileID: 2770034593891351942, guid: 5d72b56a8f42f5e47b3de9c15023bead, type: 3}
   - {fileID: 399125969, guid: 4a9be0d0118be16429ea12978bab690e, type: 3}

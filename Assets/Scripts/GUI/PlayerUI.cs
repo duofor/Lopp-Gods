@@ -158,8 +158,16 @@ public class PlayerUI : MonoBehaviour {
         weapon.transform.parent = transform;
         weapon.transform.localScale = weapon.transform.localScale * 2; 
 
+        List<Skill> weaponSkills = weapon.getWeaponSkills();
+        GameController.instance.playerSkillManager.addSkills(weaponSkills);
+
+
         // weapon = wep;
         // weapon.transform.position = weaponPosition;
         // weapon.transform.localScale = new Vector3(160, 160, 0);
+    }
+
+    public Weapon getWeapon() {
+        return weapon;
     }
 }

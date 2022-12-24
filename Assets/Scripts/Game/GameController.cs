@@ -18,8 +18,7 @@ public class GameController : GameStateManager {
     public MonsterController monsterController;
     public MenuController menuController;
     public PlayerSkillManager playerSkillManager;
-
-
+    public PlayerUI playerUI;
 
     //nu are ce cauta aici
     public List<Monster> monsterPool; // make a pool of monsters.
@@ -59,8 +58,5 @@ public class GameController : GameStateManager {
             randomTile.GetComponent<Tile>().addEncounter(monsterToSpawn2);
             Debug.Log("Spawning some trash");
         } 
-
-
-
     }
 }

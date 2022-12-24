@@ -18,4 +18,8 @@ public class Weapon : MonoBehaviour {
     public void equipWeapon() {
         playerUIRegisterWeapon(this); //can be moved to on pickup or whatever interaction
     }
+
+    public List<Skill> getWeaponSkills() {
+        return weaponSkills;
+    }
 }

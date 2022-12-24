@@ -9,18 +9,9 @@ public class PlayerSkillManager : MonoBehaviour {
     public List<Skill> availableSkills; 
     public List<PlayerSkillSlot> playerSkillSlots; 
 
-
-    void Start() {
-        addTestSkill();
-    }
-
-    void Update() {
-
-    }
-
-    private void addTestSkill() {
+    public void addSkills( List<Skill> skills ) {
         int index = 0;
-        foreach ( Skill skill in availableSkills ) {
+        foreach ( Skill skill in skills ) {
             Sprite skillSprite = skill.GetComponent<SpriteRenderer>().sprite;
             playerSkillSlots[index].setSkillSprite(skillSprite);
             // playerSkillSlots[index].setOrderInLayer(3);

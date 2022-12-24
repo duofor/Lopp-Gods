@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7162453487653516600}
   - component: {fileID: 5431362474008342139}
-  - component: {fileID: -2838428138722069299}
+  - component: {fileID: -7646754773929205003}
   m_Layer: 0
-  m_Name: TestSkill_3
+  m_Name: SwordBasicAttackSkill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 7061726731460736310}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9.6258, y: -2.4344, z: 0}
-  m_LocalScale: {x: 0.6215, y: 0.3875, z: 1}
+  m_LocalScale: {x: 0.6215, y: 0.3875, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -142199531, guid: 27a32fd3692f9d0488e40fba015fb21d, type: 3}
+  m_Sprite: {fileID: 1038573935, guid: 27a32fd3692f9d0488e40fba015fb21d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-2838428138722069299
+--- !u!114 &-7646754773929205003
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,10 +94,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7061726731460736310}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8c111982b8f12945b5bc042b4fb7963, type: 3}
+  m_Script: {fileID: 11500000, guid: d9f3fabb2cb30704a9e3bd70d58ac034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isSkillSelected: 0
-  spriteRenderer: {fileID: 5431362474008342139}
-  damage: 1
-  cooldown: 1
+  spriteRenderer: {fileID: 0}
+  skillLevel: 1
+  skillDamage: 1
+  skillManaCost: 1
+  numberOfTargets: 1
