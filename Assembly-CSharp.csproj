@@ -57,10 +57,13 @@
      <Compile Include="Assets\Scripts\Encounters\EncounterAction\PassAction.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
      <Compile Include="Assets\Scripts\Util\PanelEffectUtil.cs" />
+     <Compile Include="Assets\Scripts\Weapons\IronSword.cs" />
      <Compile Include="Assets\Scripts\Encounters\EncounterAction\Action.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
+     <Compile Include="Assets\Scripts\Weapons\Weapon.cs" />
      <Compile Include="Assets\Scripts_OLD\Player\Player.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
+     <Compile Include="Assets\Scripts\Player\Items\Items.cs" />
      <Compile Include="Assets\Scripts\Encounters\EncounterAction\AttackAction.cs" />
      <Compile Include="Assets\Scripts\GUI\DamageManager.cs" />
      <Compile Include="Assets\Scripts\Game\GameState\Battle\GameMonsterActionState.cs" />
@@ -69,10 +72,12 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
      <Compile Include="Assets\Scripts\GUI\AnimationHelper.cs" />
      <Compile Include="Assets\Scripts\GUI\Page.cs" />
+     <Compile Include="Assets\Scripts\Items\Draggable.cs" />
      <Compile Include="Assets\Scripts\GUI\Helpers\Highlight.cs" />
      <Compile Include="Assets\Scripts\Encounters\EncounterAction\BuffAction.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\GUI\RewardChoice.cs" />
+     <Compile Include="Assets\Scripts\GUI\PlayerGUI\CharacterInfo.cs" />
      <Compile Include="Assets\Scripts\GUI\PlayerGUI\PlayerSkillManager.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
@@ -94,6 +99,7 @@
      <Compile Include="Assets\Scripts_OLD\Player\Character.cs" />
      <Compile Include="Assets\Scripts\Player\Inventory.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerSkills\SwordSwingAttackSkill.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
      <Compile Include="Assets\Scripts\LevelGeneration\Tile.cs" />
      <Compile Include="Assets\Scripts\Game\GameController.cs" />
@@ -105,6 +111,7 @@
      <Compile Include="Assets\Scripts\Game\GameState\Battle\GameBattleTransitionState.cs" />
      <Compile Include="Assets\Scripts\GUI\EnemyUI.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerSkills\SwordBasicAttackSkill.cs" />
      <Compile Include="Assets\Scripts\Deprecated\DeckUsedCards.cs" />
      <Compile Include="Assets\Scripts\Buildings\Placeable.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
@@ -112,6 +119,7 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerSkills\Skill.cs" />
      <Compile Include="Assets\Scripts\Game\GameState\GameLoopState.cs" />
+     <Compile Include="Assets\Scripts\GUI\PlayerGUI\WeaponSlot.cs" />
      <Compile Include="Assets\Scripts\Deprecated\CardPosition.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
@@ -122,12 +130,6 @@
      <Compile Include="Assets\Scripts\Deprecated\Card.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
      <Compile Include="Assets\Scripts\GUI\Direction.cs" />
-     <Compile Include="Assets\Scripts\GUI\PlayerGUI\CharacterInfo.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerSkills\SwordBasicAttackSkill.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerSkills\SwordSwingAttackSkill.cs" />
-     <Compile Include="Assets\Scripts\Weapons\IronSword.cs" />
-     <Compile Include="Assets\Scripts\Weapons\Weapon.cs" />
-     <Compile Include="Assets\Scripts\Player\Items\Items.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
