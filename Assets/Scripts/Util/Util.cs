@@ -9,6 +9,9 @@ public class Util {
     public readonly string usedCardsLocation = "UsedCardsLocation";
     public readonly string spawnPoint = "SpawnPoint";
     public readonly Vector3 defaultGUIActorsScale = new Vector3(160, 160, 0);
+    public readonly Vector3 offscreenPosition = new Vector3(7777, 7777, 0);
+    public readonly float turnPromptTimer = 1.5f;
+
 
     public float monsterTransitionTimeSeconds = 0.1f;
 

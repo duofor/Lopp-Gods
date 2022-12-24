@@ -7,7 +7,11 @@ public class GamePlayerActionState : GameBaseState {
 
     public override void enterState(GameStateManager gameStateManager) {
         Debug.Log("Entered GamePlayerActionState");
-        
+
+        // display player turn prompt
+        GameController.instance.guiController.displayPlayerTurnPrompt();
+
+        //display enemy next action
         List<EnemyUI> monstersInScene = util.getMonstersInScene();
         foreach( EnemyUI enemyUI in monstersInScene ) {
             if ( enemyUI.getEnemyObject() != null ) {

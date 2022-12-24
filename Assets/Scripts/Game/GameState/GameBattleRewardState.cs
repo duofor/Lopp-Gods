@@ -22,7 +22,8 @@ public class GameBattleRewardState : GameBaseState {
             GameController.instance.player.getCurrentFloor().endEncounter(); // getting current floor and ending the encounter
             
             rewardUI.removeChoiceCardsFromScreen();
-            GameController.instance.menuController.PopPage();
+            GameController.instance.menuController.PopPage(); // popping reward
+            GameController.instance.menuController.PopPage(); // popping character info
 
             gameStateManager.switchState( gameStateManager.loopState );
         } else {

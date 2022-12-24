@@ -26,6 +26,10 @@ public class GameBattleStartState : GameBaseState {
         battleCanvas.enabled = true;
         Page page = util.getBattleGroundPage();
         GameController.instance.menuController.PushPage(page);
+
+        // enable character info
+        CharacterInfo ci = GameController.instance.guiController.characterInfo;
+        GameController.instance.menuController.PushPage(ci);
     }
 
 

@@ -14,6 +14,9 @@ public class GameMonsterActionState : GameBaseState {
     bool canSwitchState = false;
 
     public override void enterState(GameStateManager gameStateManager) {
+        // display enemy turn prompt
+        GameController.instance.guiController.displayEnemyTurnPrompt();
+
         if (doOnce == 0 ) {
             MonsterController.endMonsterTurnEvent += monsterTurnEnded; //evant registering monster end turn
             doOnce = 1;

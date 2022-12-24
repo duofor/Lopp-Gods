@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameStateManager : MonoBehaviour {
     
     public GameBaseState currentState;
+
     public GameLoopState loopState = new GameLoopState();
     public GameBattleState battleState = new GameBattleState();
     public GameBattleStartState battleStartState = new GameBattleStartState();
@@ -13,8 +14,7 @@ public class GameStateManager : MonoBehaviour {
     public GamePlayerActionState playerActionState = new GamePlayerActionState();
     public GameMonsterActionState monsterActionState = new GameMonsterActionState();
     public GameBattleTransitionState gameBattleTransitionState = new GameBattleTransitionState();
-
-
+    
     public Canvas battleGUI; 
 
     void Start() {
@@ -34,6 +34,8 @@ public class GameStateManager : MonoBehaviour {
     public GameBaseState getState() {
         return currentState;
     }
+
+
 
 }
 
