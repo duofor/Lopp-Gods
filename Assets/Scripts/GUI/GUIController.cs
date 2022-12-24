@@ -64,7 +64,6 @@ public class GUIController : MonoBehaviour {
         }
 
         GameController.instance.menuController.PopPage();
-        // page.transform.position = util.offscreenPosition; // placing this out of screen
         yield return null;
     }
 }

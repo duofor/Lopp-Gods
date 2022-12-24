@@ -7,8 +7,6 @@ public class TestSkill : Skill {
 
 
     void Start() {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        damage = 1;
     }
 
     void Update() {

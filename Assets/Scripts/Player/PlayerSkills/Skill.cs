@@ -11,8 +11,10 @@ public class Skill : MonoBehaviour {
     Vector3 startMousePos;
 
     //test data
-    public int damage = 1;
+    public int skillLevel = 1;
+    public int skillDamage = 1;
     public int skillManaCost = 1;
+    public int numberOfTargets = 1;
 
     void Awake() {
         isSkillSelected = false;
@@ -51,7 +53,7 @@ public class Skill : MonoBehaviour {
                     GameController.instance.player.setMana(playerMana);
 
                     // send the damage
-                    monster.takeDamage(damage);
+                    monster.takeDamage(skillDamage);
                 }
             }
         }

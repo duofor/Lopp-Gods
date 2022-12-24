@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerController : Looper {
     Util util = new Util();
 
+    [SerializeField] private List<Weapon> weapons;
+    private Weapon weapon;
+
     [SerializeField] public PlayerUI playerUI;
 
     public int health;
@@ -113,7 +116,7 @@ public class PlayerController : Looper {
 
             enemyUIScript.setEnemyObj(enemy); 
         }
-        
+        playerUI.setWeapon( weapons[0] );
         isInBattle = true;
     }
 

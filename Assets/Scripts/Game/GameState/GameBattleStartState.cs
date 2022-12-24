@@ -7,8 +7,6 @@ public class GameBattleStartState : GameBaseState {
     Util util = new Util();
     private Canvas battleCanvas;
     
-    private int cardStartAmount = 4;
-
     public override void enterState(GameStateManager gameStateManager) {
         Debug.Log("Entered Battle START state");
         battleCanvas = gameStateManager.battleGUI;

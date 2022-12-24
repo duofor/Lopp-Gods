@@ -13,7 +13,7 @@ public class Util {
     public readonly float turnPromptTimer = 1.5f;
 
 
-    public float monsterTransitionTimeSeconds = 0.1f;
+    public float monsterTransitionTimeSeconds = 0.7f;
 
     public GameObject findRandomTargetByTag(string tag) {
         GameObject[] otherObjects = GameObject.FindGameObjectsWithTag(tag);

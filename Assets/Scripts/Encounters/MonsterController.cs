@@ -21,7 +21,7 @@ public class MonsterController : MonoBehaviour {
         if ( action.GetType() == typeof(AttackAction)) {
             attackAnimationQueue.Add(attackAnimation(monsterUI, playerUI, action));
         } else {
-            attackAnimationQueue.Add(endTurnAfterSeconds(0.5f));
+            attackAnimationQueue.Add(endTurnAfterSeconds(2));
         }
     }
 

@@ -20,6 +20,7 @@ public class GameController : GameStateManager {
     public PlayerSkillManager playerSkillManager;
 
 
+
     //nu are ce cauta aici
     public List<Monster> monsterPool; // make a pool of monsters.
 

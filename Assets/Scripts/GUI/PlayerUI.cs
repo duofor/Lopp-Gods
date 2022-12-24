@@ -21,12 +21,15 @@ public class PlayerUI : MonoBehaviour {
     Material initialMaterial;
     private Material outlineMaterial;
 
+    //hp
     GameObject healthBarPosition;
     public int maxHealth;
-    
-    
     int previousHealth;
     int health;
+    
+    // weapon
+    [SerializeField] private Weapon weapon;
+    private Vector3 weaponPosition;
 
     int doOnce = 0;
     
@@ -51,6 +54,13 @@ public class PlayerUI : MonoBehaviour {
         
         if ( initialMaterial == null ) {
             initialMaterial = GetComponent<SpriteRenderer>().material;
+        }
+
+        foreach ( Transform trans in transform ) {
+            if (trans.name == "Weapon") {
+                weaponPosition = trans.position;
+                break;
+            }
         }
     }
 
@@ -132,5 +142,24 @@ public class PlayerUI : MonoBehaviour {
 
     void shake() {
         StartCoroutine(doSomeSmallShake());
+    }
+
+    public void setWeapon(Weapon wep) {
+
+        wep = Instantiate(wep);
+        // wep.transform.position = weaponPosition; // Copies the Position 
+        wep.transform.rotation = weapon.transform.rotation; // Copies the Rotation
+        wep.transform.localScale = weapon.transform.localScale; // Copies the Scale
+        Destroy(weapon.gameObject);
+        weapon = wep;
+        weapon.transform.position = transform.position;
+        weapon.GetComponent<SpriteRenderer>().sortingOrder = 3; 
+        weapon.transform.position = new Vector3( transform.position.x + 0.32f, transform.position.y + 0.16f, 0 );
+        weapon.transform.parent = transform;
+        weapon.transform.localScale = weapon.transform.localScale * 2; 
+
+        // weapon = wep;
+        // weapon.transform.position = weaponPosition;
+        // weapon.transform.localScale = new Vector3(160, 160, 0);
     }
 }
