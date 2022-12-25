@@ -11,4 +11,8 @@ public class SwordSwingAttackSkill : Skill {
         skillManaCost = 1;
     }
     
+    public override IEnumerator startAttackAnimation(GameObject target) {
+        yield return null;
+    }
+
 }

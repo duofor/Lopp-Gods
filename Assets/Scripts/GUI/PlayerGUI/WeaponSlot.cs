@@ -1,24 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class WeaponSlot : MonoBehaviour {
+public class WeaponSlot : ItemSlot {
     Util util = new Util();
 
     private Weapon weapon;
     private SpriteRenderer weaponSpriteRenderer;
 
-    void Update() {
-        
-    }
+    List<Skill> instantiatedSkills;
 
-    public void setWeapon(Draggable wep) {
+    public override void setItem(Draggable wep) {
         weapon = (Weapon) wep;
         GameController.instance.playerUI.setPlayerWeapon(weapon); //astronomic hack
     }
-
-    public Weapon getWeapon() {
+    public override void clearItem() {
+        weapon = null;
+    }
+    public override void clearSkills() {
+        GameController.instance.playerSkillManager.clearPlayerSkills();
+    }
+    public override Draggable getItemInSlot() {
         return weapon;
     }
+
 }

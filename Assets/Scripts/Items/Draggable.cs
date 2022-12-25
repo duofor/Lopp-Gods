@@ -12,6 +12,8 @@ public class Draggable : MonoBehaviour {
     BoxCollider2D box;
 
     Vector3 initialBoxColliderSize;
+    ItemSlot previousItemSlot;
+
 
     void OnMouseDown() {
         initialPosition = transform.position;
@@ -27,28 +29,49 @@ public class Draggable : MonoBehaviour {
         if not inventory, put it back where it came from */
 
         int found = 0;
+        ItemSlot currentItemSlot = null;
         RaycastHit2D hit = getTargetAtMouse();
-
-        if (hit && hit.transform.tag == util.inventoryWeaponSlotTag ) {
-            Debug.Log("this is what");
-            WeaponSlot weaponSlot = hit.transform.GetComponent<WeaponSlot>();
-
-            //check if we already have something equipped before trying to add a weap
-            if ( weaponSlot.getWeapon() == null ) { 
-                weaponSlot.setWeapon(this);
-                transform.position = hit.transform.position;
-                found = 1;
-            }
-        }   
+        
+        if (hit && hit.transform.tag == util.inventoryWeaponSlotTag ) { //set in weapon slot
+            ItemSlot inventorySlot = hit.transform.GetComponent<WeaponSlot>();
+            found = addItemToSlot(hit, inventorySlot);
+            currentItemSlot = inventorySlot;
+        } else if ( hit && hit.transform.tag == util.inventoryItemSlotTag ) { //set in inventory slot
+            ItemSlot inventorySlot = hit.transform.GetComponent<InventorySlot>();
+            found = addItemToSlot(hit, inventorySlot);
+            currentItemSlot = inventorySlot;
+        }
 
         if ( found == 0 ) {
             transform.position = initialPosition;
         } else {
-
+            // if we registered an item to a new slot, delete item in previous slot.
+            if ( currentItemSlot != null && currentItemSlot != previousItemSlot ) {
+                
+                if (previousItemSlot != null) {
+                    previousItemSlot.clearItem();
+                    if ( previousItemSlot.GetType() == typeof(WeaponSlot) ) {
+                        previousItemSlot.clearSkills();
+                    } 
+                }
+                previousItemSlot = currentItemSlot;
+            }
         }
 
         initialPosition = defaultPosition;
         box.size = initialBoxColliderSize;
+    }
+
+    private int addItemToSlot(RaycastHit2D hit, ItemSlot inventorySlot) {
+        //check if we already have something equipped before trying to add a weap
+        if (inventorySlot.getItemInSlot() == null) {
+            Debug.Log("Placing " + hit.transform.name + " in " + inventorySlot.ToString());
+            inventorySlot.setItem(this);
+            transform.position = hit.transform.position;
+            return 1;
+        }
+
+        return 0;
     }
 
     void Update() {

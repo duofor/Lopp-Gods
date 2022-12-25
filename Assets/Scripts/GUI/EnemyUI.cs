@@ -155,7 +155,7 @@ public class EnemyUI : MonoBehaviour {
         }
     }
 
-    IEnumerator doSomeSmallShake( ) {
+    public IEnumerator doSomeSmallShake() {
         Debug.Log("yeahh");
         Vector3 initialHitPosition = transform.position;
 

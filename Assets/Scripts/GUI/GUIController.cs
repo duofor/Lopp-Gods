@@ -6,7 +6,6 @@ public class GUIController : MonoBehaviour {
     Util util = new Util();
 
     public Camera guiCamera;
-    private Canvas canvasObject; // Assign in inspector
     private Canvas battleCanvas;
     
     //pages
@@ -14,12 +13,11 @@ public class GUIController : MonoBehaviour {
     [SerializeField] private RewardUI rewardUI;
     [SerializeField] private Page playerTurnPrompt;
     [SerializeField] private Page enemyTurnPrompt;
+    [SerializeField] private Inventory inventoryBox;
 
+    private bool hack = false;
 
     void Start() {
-        GameObject objectWithTheCamera = transform.Find("Canvas").gameObject;
-        canvasObject = objectWithTheCamera.GetComponent<Canvas>();
-
         GameObject battle = transform.Find("BattleCanvas").gameObject;
         battleCanvas = battle.GetComponent<Canvas>();
     }
@@ -30,9 +28,6 @@ public class GUIController : MonoBehaviour {
 
 
     void showMenu() {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            canvasObject.enabled = !canvasObject.enabled;
-        }
     }
 
     public RewardUI getRewardUI() {

@@ -41,7 +41,6 @@
      <Compile Include="Assets\Scripts\GUI\LoopNumber.cs" />
      <Compile Include="Assets\Scripts\Encounters\MonsterController.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerSkills\TestSkill.cs" />
      <Compile Include="Assets\Scripts\Game\GameState\GameBattleRewardState.cs" />
      <Compile Include="Assets\Scripts\GUI\EnemyPositionController.cs" />
      <Compile Include="Assets\Scripts_OLD\Player\Enemy.cs" />
@@ -56,6 +55,7 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
      <Compile Include="Assets\Scripts\Encounters\EncounterAction\PassAction.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
+     <Compile Include="Assets\Scripts\GUI\PlayerGUI\InventorySlot.cs" />
      <Compile Include="Assets\Scripts\Util\PanelEffectUtil.cs" />
      <Compile Include="Assets\Scripts\Weapons\IronSword.cs" />
      <Compile Include="Assets\Scripts\Encounters\EncounterAction\Action.cs" />
@@ -121,6 +121,7 @@
      <Compile Include="Assets\Scripts\Game\GameState\GameLoopState.cs" />
      <Compile Include="Assets\Scripts\GUI\PlayerGUI\WeaponSlot.cs" />
      <Compile Include="Assets\Scripts\Deprecated\CardPosition.cs" />
+     <Compile Include="Assets\Scripts\GUI\PlayerGUI\ItemSlot.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
      <Compile Include="Assets\Scripts\Game\GameState\GameBattleStartState.cs" />

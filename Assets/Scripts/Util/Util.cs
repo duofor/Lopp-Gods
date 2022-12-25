@@ -12,6 +12,7 @@ public class Util {
     public readonly Vector3 offscreenPosition = new Vector3(7777, 7777, 0);
     public readonly float turnPromptTimer = 1.5f;
     public readonly string inventoryWeaponSlotTag = "WeaponSlot";
+    public readonly string inventoryItemSlotTag = "InventorySlot";
     public readonly string weaponTag = "WeaponItem";
 
 

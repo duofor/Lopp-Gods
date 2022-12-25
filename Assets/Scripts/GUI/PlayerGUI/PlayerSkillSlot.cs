@@ -7,7 +7,7 @@ public class PlayerSkillSlot : MonoBehaviour {
     Util util = new Util();
 
     private Image image;
-    private Skill skill; 
+    [SerializeField] private Skill skill; //for debugga 
     private Material outlineMaterial;
     private SpriteRenderer spriteRenderer;
     private Sprite defaultSlotSprite;
@@ -27,7 +27,10 @@ public class PlayerSkillSlot : MonoBehaviour {
     void Update() {
         if (skill != null && skill.isSkillSelected == true) {
             if (Input.GetMouseButtonUp(0)) {
-                skill.fireAtTarget();
+                RaycastHit2D hit = util.getTargetAtMouse();
+                if (hit && hit.transform.gameObject != null && hit.transform.tag == util.enemyUITag ) {
+                    StartCoroutine(skill.startAttackAnimation( hit.transform.gameObject ));
+                }
             }
         }
     }
@@ -59,6 +62,7 @@ public class PlayerSkillSlot : MonoBehaviour {
 
     public void setSkill(Skill skillToSet) {
         skill = skillToSet;
+        skill.isSkillSelected = false;
     }
     public void clearSkill() {
         skill = null;

@@ -35,8 +35,8 @@ public class PlayerController : Looper {
 
     public void init() {
         health = 10;
-        mana = 10;
-        maxHealth = 10;
+        mana = 50;
+        maxHealth = health;
 
         allMovePoints = GameObject.FindGameObjectsWithTag("MovePoint");
         rb = GetComponent<Rigidbody2D>();

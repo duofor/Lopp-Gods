@@ -21,6 +21,7 @@ TagManager:
   - Button
   - WeaponSlot
   - WeaponItem
+  - InventorySlot
   layers:
   - Default
   - TransparentFX

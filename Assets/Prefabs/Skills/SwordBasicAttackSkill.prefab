@@ -103,3 +103,4 @@ MonoBehaviour:
   skillDamage: 1
   skillManaCost: 1
   numberOfTargets: 1
+  testAttackSprite: {fileID: 21300000, guid: 9fde5919beddb3f4191cf5169f7d8ac1, type: 3}

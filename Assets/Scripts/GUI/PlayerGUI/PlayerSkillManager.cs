@@ -4,17 +4,12 @@ using UnityEngine;
 
 public class PlayerSkillManager : MonoBehaviour {
 
-
     //will keep this public for testing purposes
     public List<PlayerSkillSlot> playerSkillSlots; 
 
     public void addSkills( List<Skill> skills ) {
+        clearPlayerSkills();
         int index = 0;
-
-        foreach ( PlayerSkillSlot pss in playerSkillSlots ) {
-            pss.clearSkill();
-            pss.clearSkillSprite();
-        }
 
         foreach ( Skill skill in skills ) {
             Sprite skillSprite = skill.GetComponent<SpriteRenderer>().sprite;
@@ -24,11 +19,18 @@ public class PlayerSkillManager : MonoBehaviour {
             index += 1;
         }
     }
+    public void clearPlayerSkills() {
+        if ( playerSkillSlots.Count == 0 )
+            return;
 
+        foreach ( PlayerSkillSlot pss in playerSkillSlots ) {
+            pss.clearSkill();
+            pss.clearSkillSprite();
+        }
+    }
+    
     public void endPlayerTurn() { // astronomic hack
         //this should be illegal
         GameController.instance.player.canEndTurn = true;
     }
-
-
 }
