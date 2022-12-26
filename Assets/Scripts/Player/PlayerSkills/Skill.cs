@@ -10,6 +10,8 @@ public abstract class Skill : MonoBehaviour {
     private SpriteRenderer spriteRenderer;
     Vector3 startMousePos;
 
+    [SerializeField] private GameObject skillAnimation_Prefab;
+
     //test data
     public int skillLevel = 1;
     public int skillDamage = 1;
@@ -49,4 +51,8 @@ public abstract class Skill : MonoBehaviour {
     } 
 
     public abstract IEnumerator startAttackAnimation(GameObject target);
+
+    public GameObject getSkillAnimationPrefab() {
+        return skillAnimation_Prefab;
+    }
 }

@@ -131,6 +131,12 @@
      <Compile Include="Assets\Scripts\Deprecated\Card.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
      <Compile Include="Assets\Scripts\GUI\Direction.cs" />
+     <Compile Include="Assets\Scripts\Weapons\FireStaff.cs" />
+     <Compile Include="Assets\Scripts\Weapons\FireBlaster.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerSkills\FireStaff\MeteorStorm.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerSkills\FireStaff\FireBall.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerSkills\MagmaStaff\FireHand.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerSkills\MagmaStaff\NapalmBlast.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
@@ -148,6 +154,7 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+     <None Include="Assets\Pixel FX - Fire\Read Me.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
      <None Include="Assets\Modular Cards DEMO\Documentation.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
