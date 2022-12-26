@@ -15,6 +15,4 @@ public class RewardUI : Page {
     public void init() {
         isChoiceMade = false;
     }
-
-
 }

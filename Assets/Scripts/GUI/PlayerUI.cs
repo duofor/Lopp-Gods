@@ -153,6 +153,7 @@ public class PlayerUI : MonoBehaviour {
         Weapon weaponToSet = (Weapon) Instantiate(wep, util.defaultVector3, weaponPoint.transform.rotation);
         weaponToSet.GetComponent<SpriteRenderer>().sortingOrder = 3; 
         
+        weaponToSet.transform.SetParent(transform); // so that when scene ends, wep moves out of screen
         weaponToSet.transform.position = weaponPoint.transform.position; 
         
         List<Skill> weaponSkills = weaponToSet.getWeaponSkills();
