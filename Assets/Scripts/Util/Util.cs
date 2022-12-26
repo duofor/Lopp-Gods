@@ -7,14 +7,15 @@ public class Util {
     public readonly string enemyUITag = "EnemyUI";
     public readonly string enemyFloorPosition = "EnemyFloorPosition";
     public readonly string spawnPoint = "SpawnPoint";
-    public readonly Vector3 defaultGUIActorsScale = new Vector3(160, 160, 0);
+    public readonly Vector3 defaultGUIActorsScale = new Vector3(3, 3, 0);
     public readonly Vector3 defaultVector3 = new Vector3(0, 0, 0);
     public readonly Vector3 offscreenPosition = new Vector3(7777, 7777, 0);
     public readonly float turnPromptTimer = 1.5f;
     public readonly string inventoryWeaponSlotTag = "WeaponSlot";
     public readonly string inventoryItemSlotTag = "InventorySlot";
     public readonly string weaponTag = "WeaponItem";
-
+    public readonly string rewardUIName = "RewardUI";
+    public readonly string playerPositionController = "PlayerPositionController";
 
     public float monsterTransitionTimeSeconds = 0.7f;
 
@@ -80,7 +81,7 @@ public class Util {
 
     public EnemyUI getNextEnemyUIRef() {
         for (int i = 1; i < 10; i++) {
-            string enemyUIName = "EnemyUI_" + i.ToString();
+            string enemyUIName = "EnemyPoint_" + i.ToString();
             GameObject enemyUI = GameObject.Find(enemyUIName);
             
             if (enemyUI == null)
@@ -94,6 +95,25 @@ public class Util {
             }
 
             return enemyUIScript;
+        }
+
+        return null;
+    } 
+
+    public PlayerUI getNextPlayerUIRef() {
+        for (int i = 1; i < 10; i++) {
+            string enemyUIName = "PlayerPoint_" + i.ToString();
+            GameObject playerUI = GameObject.Find(enemyUIName);
+            
+            if (playerUI == null)
+                return null;
+            
+            PlayerUI playerUIScript = playerUI.GetComponent<PlayerUI>();
+
+            if ( playerUIScript.player != null ) { // if its set
+                return playerUIScript;
+            }
+
         }
 
         return null;

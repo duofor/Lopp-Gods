@@ -11,9 +11,11 @@ public class InventorySlot : ItemSlot {
 
     public override void setItem(Draggable i) {
         item = i;
+        disableBoxCollider();
     }
     public override void clearItem() {
         item = null;
+        enableBoxCollider();
     }
     public override void clearSkills() {}
     public override Draggable getItemInSlot() {

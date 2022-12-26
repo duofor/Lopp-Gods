@@ -34,12 +34,16 @@ public class Draggable : MonoBehaviour {
         
         if (hit && hit.transform.tag == util.inventoryWeaponSlotTag ) { //set in weapon slot
             ItemSlot inventorySlot = hit.transform.GetComponent<WeaponSlot>();
-            found = addItemToSlot(hit, inventorySlot);
+            found = addItemToSlot(transform.gameObject, inventorySlot);
             currentItemSlot = inventorySlot;
         } else if ( hit && hit.transform.tag == util.inventoryItemSlotTag ) { //set in inventory slot
             ItemSlot inventorySlot = hit.transform.GetComponent<InventorySlot>();
-            found = addItemToSlot(hit, inventorySlot);
+            found = addItemToSlot(transform.gameObject, inventorySlot);
             currentItemSlot = inventorySlot;
+        } else {
+            if ( hit ) {
+                Debug.Log("tried to put " + transform.name + " in " + hit.transform.name);
+            }
         }
 
         if ( found == 0 ) {
@@ -62,12 +66,12 @@ public class Draggable : MonoBehaviour {
         box.size = initialBoxColliderSize;
     }
 
-    private int addItemToSlot(RaycastHit2D hit, ItemSlot inventorySlot) {
+    private int addItemToSlot(GameObject item, ItemSlot inventorySlot) {
         //check if we already have something equipped before trying to add a weap
         if (inventorySlot.getItemInSlot() == null) {
-            Debug.Log("Placing " + hit.transform.name + " in " + inventorySlot.ToString());
+            Debug.Log("Placing " + item.transform.name + " in " + inventorySlot.ToString());
             inventorySlot.setItem(this);
-            transform.position = hit.transform.position;
+            transform.position = inventorySlot.transform.position;
             return 1;
         }
 

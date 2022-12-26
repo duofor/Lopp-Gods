@@ -9,40 +9,11 @@ public class RewardUI : Page {
     private int rewardsAmount = 3;
     Vector3 cardTempPosition = new Vector3( 9999, 9999, 0); 
 
-
-    public List<Card> allAvailableCards;
-
     void Start() {
-    }
-
-    public void removeChoiceCardsFromScreen() {
-
-
     }
 
     public void init() {
         isChoiceMade = false;
-
-        // List<Card> choices = new List<Card>();
-        // for (int i = 0; i < rewardsAmount; i++) {
-        //     int random = Random.Range(0, allAvailableCards.Count);
-        //     choices.Add(allAvailableCards[random]);
-        //     allAvailableCards.Remove(allAvailableCards[random]); //remove so we dont pick the same card twice
-        // }
-
-        // foreach ( Card card in choices) {
-        //     allAvailableCards.Add(card);// repop with the removed from above
-        // }
-
-        // int count = 0;
-        // foreach (Transform child in transform) {
-        //     if (child.transform.tag == "Button")
-        //         return;
-        //     RewardChoice rewardChoice = child.GetComponent<RewardChoice>();
-        //     rewardChoice.setReward(choices[count]); //set the reward
-        //     rewardChoice.setRewardPosition(); // this can be later changed into setting the sprite position
-        //     count += 1;
-        // }
     }
 
 

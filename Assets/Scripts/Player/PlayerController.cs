@@ -115,6 +115,11 @@ public class PlayerController : Looper {
 
             enemyUIScript.setEnemyObj(enemy); 
         }
+
+        // only works for 1 rn
+        PlayerUI playerUI = util.getNextPlayerUIRef();
+        playerUI.setFightPlayerPosition();
+
         isInBattle = true;
     }
 

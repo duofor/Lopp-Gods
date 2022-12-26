@@ -10,7 +10,7 @@ public class PlayerUI : MonoBehaviour {
     public delegate void PlayerTakesDamageEvent(Transform transform);
     public static event PlayerTakesDamageEvent playerTakesDamageEvent;
 
-    [SerializeField] private GameObject player;
+    [SerializeField] public GameObject player;
     [SerializeField] private Slider healthSlider;
     
     
@@ -58,21 +58,22 @@ public class PlayerUI : MonoBehaviour {
         }
 
         weaponPosition = weaponPoint.transform.position;
+        transform.position = util.offscreenPosition; // init
     }
 
     void Update() {
         if ( maxHealth == 0 ) {
            maxHealth = GameController.instance.player.getMaxHealth();
         }
-
-        bool fightState = GameController.instance.player.isInBattle;
-        if ( fightState == false ) {
-            spriteRenderer.enabled = false;
-            healthSlider.transform.position = new Vector3 (9999, 9999, 0);
-        } else {
-            spriteRenderer.enabled = true;
-            spriteRenderer.sortingOrder = 3;
-            updateHealthBar();
+        Stack<Page> UIStack = GameController.instance.menuController.getStack();
+        if ( UIStack.Count > 0 ) {
+            Page lastUIElement = UIStack.Peek();
+            if ( lastUIElement.GetType() == typeof(RewardUI) ) {
+                transform.position = util.offscreenPosition;
+                healthSlider.transform.position = util.offscreenPosition;
+            } else {
+                updateHealthBar();
+            }
         }
     }
 
@@ -87,7 +88,6 @@ public class PlayerUI : MonoBehaviour {
             spriteRenderer.material = initialMaterial;
         }
     }
-
 
     private void updateHealthBar() {
         float offset = 0.5f;
@@ -140,21 +140,29 @@ public class PlayerUI : MonoBehaviour {
         StartCoroutine(doSomeSmallShake());
     }
 
-    public void setPlayerWeapon(Weapon wep) {
+    public void setPlayerWeapon(Draggable wep) {
+        if ( wep == null ) {// when we unequip we just destroy the current weapon in hand.
+            Destroy(weapon.gameObject); 
+            return;
+        }
+        
         if ( weapon != null ) {
             Destroy(weapon.gameObject);
         }
 
-        Weapon weaponToSet = Instantiate(wep, util.defaultVector3, transform.rotation);
+        Weapon weaponToSet = (Weapon) Instantiate(wep, util.defaultVector3, weaponPoint.transform.rotation);
         weaponToSet.GetComponent<SpriteRenderer>().sortingOrder = 3; 
         
-        //set parent and just set pos to 000
-        weaponToSet.transform.parent = weaponPoint.transform;
-        weaponToSet.transform.localPosition = util.defaultVector3; 
+        weaponToSet.transform.position = weaponPoint.transform.position; 
         
         List<Skill> weaponSkills = weaponToSet.getWeaponSkills();
         GameController.instance.playerSkillManager.addSkills(weaponSkills);
 
         weapon = weaponToSet; // dunno why we still do this tho
+    }
+
+    public void setFightPlayerPosition() {
+        GameObject playerPosCon = GameObject.Find(util.playerPositionController);
+        transform.position = new Vector3( playerPosCon.transform.position.x * 2, playerPosCon.transform.position.y, 0 ); //center
     }
 }

@@ -78,4 +78,8 @@ public class MenuController : MonoBehaviour {
             PopPage();
         }
     }
+
+    public Stack<Page> getStack() {
+        return PageStack;
+    }
 }
